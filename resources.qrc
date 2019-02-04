@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/qtquickcontrols2.conf</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/controls/NumberControl.qml</file>
+        <file>fonts/robotoslab-bold.ttf</file>
+        <file>fonts/robotoslab-light.ttf</file>
+        <file>fonts/robotoslab-regular.ttf</file>
+        <file>fonts/robotoslab-thin.ttf</file>
+        <file>fonts/OpenSans-Bold.ttf</file>
+        <file>fonts/OpenSans-Regular.ttf</file>
+        <file>images/flag_of_russia.svg</file>
+        <file>qml/controls/KeyEventHandler.qml</file>
+    </qresource>
+</RCC>
