@@ -11,8 +11,12 @@ public:
     explicit DatabaseAccessor(QObject *parent = nullptr);
 
 signals:
+    void results(const QList<QSqlRecord> &recordList);
+    void results(const QList<QSqlRecord> &recordList, const QString &transactionId);
 
 public slots:
+    void execute(const QString &query);
+    void execute(const QString &query, const QString &transactionId);
 
 private:
     bool initialize();

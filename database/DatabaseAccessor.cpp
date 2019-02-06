@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlRecord>
 
 #include "core/Variables.h"
 #include "core/Util.h"
@@ -13,6 +14,48 @@ DatabaseAccessor::DatabaseAccessor(QObject *parent) :
     if (initialize()) {
         createTables();
     }
+}
+
+void DatabaseAccessor::execute(const QString &query)
+{
+    QList<QSqlRecord> recordList;
+    QSqlQuery q(database_);
+
+    if (!q.exec(query))
+    {
+        qWarning() << "Failed to execute SQL query:" << q.lastError().text();
+        return;
+    }
+    else
+    {
+        while (q.next())
+        {
+            recordList.append(q.record());
+        }
+    }
+
+    emit results(recordList);
+}
+
+void DatabaseAccessor::execute(const QString &query, const QString &transactionId)
+{
+    QList<QSqlRecord> recordList;
+    QSqlQuery q(database_);
+
+    if (!q.exec(query))
+    {
+        qWarning() << "Failed to execute SQL query:" << q.lastError().text();
+        return;
+    }
+    else
+    {
+        while (q.next())
+        {
+            recordList.append(q.record());
+        }
+    }
+
+    emit results(recordList, transactionId);
 }
 
 bool DatabaseAccessor::initialize()
