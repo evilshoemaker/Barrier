@@ -1,12 +1,18 @@
 #include "DatabaseAccessor.h"
 
+#include <QDebug>
+#include <QSqlError>
+#include <QSqlQuery>
+
 #include "core/Variables.h"
 #include "core/Util.h"
 
 DatabaseAccessor::DatabaseAccessor(QObject *parent) :
     QObject(parent)
 {
-
+    if (initialize()) {
+        createTables();
+    }
 }
 
 bool DatabaseAccessor::initialize()
@@ -20,9 +26,81 @@ bool DatabaseAccessor::initialize()
     database_.setUserName(DATABASE_USER);
     database_.setPassword(DATABASE_PASS);
     database_.setConnectOptions("QSQLITE_BUSY_TIMEOUT=10000");
+
+    if (!database_.open())
+    {
+        qWarning() << "Unable to connect to database, giving up:" << database_.lastError().text();
+        return false;
+    }
+
+    return true;
 }
 
 void DatabaseAccessor::createTables()
 {
+    createCarsTable();
+    createLogsTable();
+}
 
+void DatabaseAccessor::createLogsTable()
+{
+    if (database_.tables().contains("logs"))
+    {
+        return;
+    }
+
+    QStringList queryList;
+    queryList.append("CREATE TABLE logs ("
+                     " id INTEGER NOT NULL PRIMARY KEY,"
+                     " car_number TEXT NOT NULL,"
+                     " name TEXT NOT NULL,"
+                     " surname TEXT NOT NULL,"
+                     " patronymic TEXT NOT NULL,"
+                     " apartment_number DEFAULT NULL,"
+                     " parking_place DEFAULT NULL,"
+                     " phone_number DEFAULT NULL,"
+                     " description TEXT DEFAULT '');");
+
+    QSqlQuery q(database_);
+
+    for (int i = 0; i < queryList.count(); ++i)
+    {
+        if (!q.exec(queryList.at(i).toLocal8Bit().constData()))
+        {
+            qWarning() << "Failed to create table:" << q.lastError().text();
+            continue;
+        }
+    }
+}
+
+void DatabaseAccessor::createCarsTable()
+{
+    if (database_.tables().contains("cars"))
+    {
+        return;
+    }
+
+    QStringList queryList;
+    queryList.append("CREATE TABLE cars ("
+                     " id INTEGER NOT NULL PRIMARY KEY,"
+                     " car_number TEXT NOT NULL,"
+                     " name TEXT NOT NULL,"
+                     " surname TEXT NOT NULL,"
+                     " patronymic TEXT NOT NULL,"
+                     " apartment_number DEFAULT NULL,"
+                     " parking_place DEFAULT NULL,"
+                     " phone_number DEFAULT NULL,"
+                     " description TEXT DEFAULT '',"
+                     " CONSTRAINT unique_car_number UNIQUE (car_number));");
+
+    QSqlQuery q(database_);
+
+    for (int i = 0; i < queryList.count(); ++i)
+    {
+        if (!q.exec(queryList.at(i).toLocal8Bit().constData()))
+        {
+            qWarning() << "Failed to create table:" << q.lastError().text();
+            continue;
+        }
+    }
 }

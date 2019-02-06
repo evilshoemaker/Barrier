@@ -18,6 +18,8 @@ private:
     bool initialize();
 
     void createTables();
+    void createLogsTable();
+    void createCarsTable();
 
     QSqlDatabase database_;
 

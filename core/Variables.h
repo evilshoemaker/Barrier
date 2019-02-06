@@ -6,7 +6,7 @@
 class Variables
 {
 public:
-    static QString
+    static QString databaseFilePath();
 };
 
 #endif // VARIABLES_H
