@@ -7,6 +7,7 @@ class CarNumberInfo : public QObject
 {
 	Q_OBJECT
 
+	Q_PROPERTY(qlonglong id READ id WRITE setId)
 	Q_PROPERTY(QString carNumber READ carNumber WRITE setCarNumber NOTIFY carNumberChanged)
 	Q_PROPERTY(QString ownerName READ ownerName WRITE setOwnerName NOTIFY ownerNameChanged)
 	Q_PROPERTY(QString ownerSurname READ ownerSurname WRITE setOwnerSurname NOTIFY ownerSurnameChanged)
@@ -18,6 +19,9 @@ class CarNumberInfo : public QObject
 
 public:
 	explicit CarNumberInfo(QObject *parent = nullptr);
+
+	qlonglong id();
+	void setId(qlonglong id);
 
 	QString carNumber();
 	void setCarNumber(const QString &carNumber);
@@ -54,6 +58,7 @@ signals:
 	void descriptionChanged();
 
 private:
+	qlonglong id_;
 	QString carNumber_;
 	QString ownerName_;
 	QString ownerSurname_;
