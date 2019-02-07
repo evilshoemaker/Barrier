@@ -99,9 +99,9 @@ void DatabaseAccessor::createLogsTable()
                      " name TEXT NOT NULL,"
                      " surname TEXT NOT NULL,"
                      " patronymic TEXT NOT NULL,"
-                     " apartment_number DEFAULT NULL,"
-                     " parking_place DEFAULT NULL,"
-                     " phone_number DEFAULT NULL,"
+					 " apartment_number TEXT DEFAULT NULL,"
+					 " parking_place TEXT DEFAULT NULL,"
+					 " phone_number TEXT DEFAULT NULL,"
                      " description TEXT DEFAULT '');");
 
     QSqlQuery q(database_);
