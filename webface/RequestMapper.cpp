@@ -1,6 +1,6 @@
 #include "RequestMapper.h"
 
-#include "controller/LoginController.h"
+/*#include "controller/LoginController.h"
 #include "controller/SettingsController.h"
 #include "controller/IndexController.h"
 #include "controller/SystemInfoController.h"
@@ -30,7 +30,7 @@
 #include "controller/chart/CustomChartController.h"
 #include "controller/chart/AddSensorToChartController.h"
 #include "controller/chart/SensorCustomChartController.h"
-#include "controller/chart/CustomChartSettingsController.h"
+#include "controller/chart/CustomChartSettingsController.h"*/
 
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
@@ -52,7 +52,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 {
     QByteArray path = request.getPath();
 
-    if (path.startsWith("/css") || path.startsWith("/fonts")
+	/*if (path.startsWith("/css") || path.startsWith("/fonts")
             || path.startsWith("/js") || path.startsWith("/img")
             || path.startsWith("/amcharts") || path.startsWith("/chart"))
     {
@@ -194,5 +194,5 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
     else
     {
         response.setStatus(404, "Page not found");
-    }
+	}*/
 }

@@ -7,7 +7,8 @@
 #include "httpsessionstore.h"
 
 #include "RequestMapper.h"
-#include "Settings.h"
+
+#include "core/Settings.h"
 
 WebFace::WebFace(QObject *parent)
     : QObject (parent)
