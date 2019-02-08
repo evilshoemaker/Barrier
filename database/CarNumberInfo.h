@@ -13,7 +13,7 @@ class CarNumberInfo : public QObject
 	Q_PROPERTY(QString ownerSurname READ ownerSurname WRITE setOwnerSurname NOTIFY ownerSurnameChanged)
 	Q_PROPERTY(QString ownerPatronymic READ ownerPatronymic WRITE setOwnerPatronymic NOTIFY ownerPatronymicChanged)
 	Q_PROPERTY(QString apartmentNumber READ apartmentNumber WRITE setApartmentNumber NOTIFY apartmentNumberChanged)
-	Q_PROPERTY(QStrign parkingPlace READ parkingPlace WRITE setParkingPlace NOTIFY parkingPlaceChanged)
+	Q_PROPERTY(QString parkingPlace READ parkingPlace WRITE setParkingPlace NOTIFY parkingPlaceChanged)
 	Q_PROPERTY(QString phoneNumber READ phoneNumber WRITE setPhoneNumber NOTIFY phoneNumberChanged)
 	Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
 

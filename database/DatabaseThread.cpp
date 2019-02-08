@@ -38,5 +38,7 @@ void DatabaseThread::run()
 	connect(accessor_, static_cast<void (DatabaseAccessor::*)(const QList<QSqlRecord> &, const QString &)>(&DatabaseAccessor::results),
 			this, &DatabaseThread::results);
 
+	connect(accessor_, &DatabaseAccessor::error, this, &DatabaseThread::error);
+
 	exec();
 }

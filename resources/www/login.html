@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html lang=en> 
+	<head> 
+		<meta charset=utf-8> 
+		<meta http-equiv=X-UA-Compatible content="IE=edge"> 
+		<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"> 
+		<link rel=apple-touch-icon sizes=180x180 href=img/apple-touch-icon.png> 
+		<link rel=icon type=image/png sizes=32x32 href=img/favicon-32x32.png> 
+		<link rel=icon type=image/png sizes=16x16 href=img/favicon-16x16.png> 
+		<link rel=manifest href=img/manifest.json> 
+		<link rel=mask-icon href=img/safari-pinned-tab.svg color=#5bbad5> 
+		<link rel="shortcut icon" href=img/favicon.ico> 
+		<meta name=apple-mobile-web-app-title content="Система управления шлагбаумом"> 
+		<meta name=application-name content="Система управления шлагбаумом"> 
+		<meta name=msapplication-config content=img/browserconfig.xml> 
+		<meta name=theme-color content=#ffffff> 
+		<title>Система управления шлагбаумом</title> 
+		<link href="css/index.fonts.css" rel="stylesheet">
+		<link href="css/index.styles.css" rel="stylesheet">
+		<script src=js/main.js></script>
+	</head> 
+	<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"> 
+		<div id=root></div> 
+		<div class="app flex-row align-items-center"><div class="login card-group"><div class="p-4 card"><div class="card-body">
+			<h1>Авторизация</h1><p class="text-muted">Войдите в свой аккаунт</p>
+		<form class="" onsubmit="return validForm();" actiom="/login" method="post">
+			<div class="mb-4 input-group"><div class="input-group-addon"><i class="icon-user"></i></div>
+                        <input type="text" placeholder="Логин" name="username" class="form-control" onKeyUp="formLoginInputChanged(this);">
+			<div class="invalid-feedback">The login has to be minimum 3 characters long.</div>
+			</div><div class="mb-4 input-group"><div class="input-group-addon"><i class="icon-lock"></i></div>
+                        <input type="password" placeholder="Пароль" name="password" class="form-control" onKeyUp="formPasswordInputChanged(this);">
+                        <div class="invalid-feedback"> The password has to be minimum 5 characters long.</div></div>
+                        <div class="error-message" id="error_message">{message_error}</div><div class="row">
+                        <div class="col-6">
+                                <button type="submit" class="px-4 btn btn-primary">Войти</button>
+                        </div>
+                        </div>
+		</form></div></div></div></div>
+		<!--<script type="text/javascript" src="js/index.js"></script>-->
+	</body> 
+</html> 

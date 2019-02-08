@@ -1,0 +1,47 @@
+.activePeriod {
+    background-color: #ccf2ff;
+    color: black;
+}
+
+div {
+    border: none;
+    outline: none !important;
+}
+
+div.btn-group div:hover {
+    background-color: #e6f9ff;
+}
+
+#option6:hover {
+    background-color: #e6f9ff
+}
+
+button,
+label {
+    border: none;
+    outline: none !important;
+}
+
+i#play-button {
+    color: #006600;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+div#realtime-div {
+    margin-right: 10px;
+    width: 80px;
+    border-right: 1px solid rgb(139, 139, 139);
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+div.realtime-on {
+    background-color: #aceaff;
+    color: black;
+}
+
+div.realtime-off:hover {
+    background-color: #aceaff;
+    color: black;
+}

@@ -1,1 +1,134 @@
- 
+<!DOCTYPE html> 
+<html lang=en> 
+	<head> 
+		<meta charset=utf-8> 
+		<meta http-equiv=X-UA-Compatible content="IE=edge"> 
+		<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"> 
+		<meta name=description content="BPS - dashboard"> 
+		<link rel=apple-touch-icon sizes=180x180 href=/img/apple-touch-icon.png> 
+		<link rel=icon type=/image/png sizes=32x32 href=/img/favicon-32x32.png> 
+		<link rel=icon type=/image/png sizes=16x16 href=/img/favicon-16x16.png> 
+		<link rel=manifest href=/img/manifest.json> 
+		<link rel=mask-icon href=/img/safari-pinned-tab.svg color=#5bbad5> 
+		<link rel="shortcut icon" href=/img/favicon.ico> 
+		<meta name=apple-mobile-web-app-title content="BPS Dashboard"> 
+		<meta name=application-name content="BPS Dashboard"> 
+		<meta name=msapplication-config content=/img/browserconfig.xml> 
+		<meta name=theme-color content=#ffffff> 
+
+		<script src="/amcharts/amcharts.js"></script>
+		<script src="/amcharts/serial.js"></script>
+		<script src="/amcharts/themes/light.js"></script>
+		<script src="/amcharts/plugins/export/export.min.js"></script>
+		<link rel="stylesheet" href="/amcharts/plugins/export/export.css" type="text/css" media="all" />
+
+		<title>BPS</title> 
+		<!--<script src=https://www.amcharts.com/lib/3/amcharts.js></script> 
+		<script src=https://www.amcharts.com/lib/3/serial.js></script> 
+		<script src=https://www.amcharts.com/lib/3/plugins/export/export.min.js></script> 
+		<link rel=stylesheet href=https://www.amcharts.com/lib/3/plugins/export/export.css type=text/css media=all /> 
+		<script src=https://www.amcharts.com/lib/3/themes/light.js></script> 
+		<script src=https://www.amcharts.com/lib/3/maps/js/worldLow.js></script>--> 
+
+		<!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+		
+		<link href="/css/index.fonts.css" rel="stylesheet">
+		<link href="/css/index.styles.css" rel="stylesheet">
+		<link href="/css/d3-context-menu.css" rel="stylesheet">
+		<!--<link href="/css/f0.styles.css" rel="stylesheet">-->
+
+		<script src=/js/d3.v3.min.js></script>
+		<script src="/js/jquery-1.10.2.min.js"></script>
+		<script src=/js/main.js></script>
+		<script src=/js/main.modal.js></script>
+		<script src=/js/main.commands.js></script>
+		<script src=/js/d3-context-menu.js></script>
+	</head> 
+	<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"> 
+		<div id=root>
+			<div class="app">
+				<header class="app-header navbar">
+					<button type="button" class="d-lg-none navbar-toggler">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<a href="#" class="navbar-brand"></a>
+					<div class="page-header">{title}</div>
+					<ul class="ml-auto mr-4 navbar-nav">
+						<li class="dropdown nav-item">
+							<a aria-haspopup="true" href="./logout" class="nav-link" aria-expanded="false">
+								<span class="login">Logout</span>
+							</a>
+						</li>
+					</ul>
+				</header>
+				<div class="app-body">
+					<div class="sidebar">
+						<nav class="sidebar-nav">
+							<ul class="nav" id="nav_bar">
+								<li class="nav-title">Administration </li>
+
+								<li class="nav-item nav-dropdown {isOpenMeasurementsGroup}">
+									<a class="nav-link nav-dropdown-toggle" href=""><i class="icon-grid"></i>Measurements</a>
+									<ul class="nav-dropdown-items">
+										<li class="nav-item">
+											<a class="nav-link {isActiveMeasurements}" aria-current="false" href="/measurements"><i class="icon-graph"></i>Measurements</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link {isActiveChart}" aria-current="false" href="/measurements/chart"><i class="icon-chart"></i>Chart</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="nav-item">
+									<a class="nav-link {isActiveNetwork}" aria-current="false" href="/network"><i class="icon-feed"></i>Network</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link {isActiveEnergy}" aria-current="false" href="/energy"><i class="icon-energy"></i>Energy resources</a>
+								</li>
+								<!--<li class="nav-item">
+									<a class="nav-link {isActiveCommand}" aria-current="false" href="./commands"><i class="icon-grid"></i>Commands</a>
+								</li>-->
+								<li class="nav-item nav-dropdown {isOpenCommandsGroup}">
+									<a class="nav-link nav-dropdown-toggle" href=""><i class="icon-grid"></i>Commands</a>
+									<ul class="nav-dropdown-items">
+										<li class="nav-item">
+											<a class="nav-link {isActiveCcCommand}" aria-current="false" href="/commands/cc"><i class="icon-grid"></i>CC</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link {isActiveScCommand}" aria-current="false" href="/commands/sc"><i class="icon-grid"></i>SC/PC</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link {isActiveCalibrationCommand}" aria-current="false" href="/commands/calibration"><i class="icon-grid"></i>Calibration</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link {isActiveSettings}" aria-current="false" href="/settings"><i class="icon-settings"></i>Settings</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link {isActiveInfo}" aria-current="false" href="/info"><i class="icon-info"></i>System info</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+
+					<main class="main">
+						<div>
+							<ol class="breadcrumb"><li class="breadcrumb-item"><!--<a href="#" id="breadcrumb-item-link"></a>--></li></ol>
+						</div>
+						<div class="container-fluid" id="testb">{content}<!--<div class="animated fadeIn"></div>-->
+						</div>
+					</main>
+				</div>
+				<footer class="app-footer"><span>© 2018 BPS Connected-BIM</span>
+				</footer>
+			</div>
+		</div> 
+
+		<div id='modal_div'></div>
+		<!--<menu class="context-menu"> 
+			menu menu
+		</menu>-->
+	</div>
+	</body> 
+</html> 

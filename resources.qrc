@@ -12,5 +12,44 @@
         <file>fonts/OpenSans-Regular.ttf</file>
         <file>images/flag_of_russia.svg</file>
         <file>qml/controls/KeyEventHandler.qml</file>
+        <file>resources/http_server_config.ini</file>
+        <file>resources/http_server_debug_config.ini</file>
+        <file>resources/http_server_debug_win_config.ini</file>
+        <file>resources/www/index.html</file>
+        <file>resources/www/login.html</file>
+        <file>resources/www/css/f0.styles.css</file>
+        <file>resources/www/css/index.fonts.css</file>
+        <file>resources/www/css/index.styles.css</file>
+        <file>resources/www/css/legend.component.css</file>
+        <file>resources/www/css/period.component.css</file>
+        <file>resources/www/css/fonts/fontawesome-webfont.af7ae505a9eed503f8b8e6982036873e.woff2</file>
+        <file>resources/www/css/fonts/Simple-Line-Icons.0cb0b9c589c0624c9c78.woff2</file>
+        <file>resources/www/css/fonts/Simple-Line-Icons.2fe2efe63441d830b1ac.svg</file>
+        <file>resources/www/css/fonts/Simple-Line-Icons.78f07e2c2a535c26ef21.woff</file>
+        <file>resources/www/css/fonts/Simple-Line-Icons.d2285965fe34b0546504.ttf</file>
+        <file>resources/www/css/fonts/Simple-Line-Icons.f33df365d6d0255b586f.eot</file>
+        <file>resources/www/fonts/fontawesome-webfont.eot</file>
+        <file>resources/www/fonts/fontawesome-webfont.svg</file>
+        <file>resources/www/fonts/fontawesome-webfont.ttf</file>
+        <file>resources/www/fonts/fontawesome-webfont.woff</file>
+        <file>resources/www/fonts/fontawesome-webfont.woff2</file>
+        <file>resources/www/fonts/FontAwesome.otf</file>
+        <file>resources/www/img/browserconfig.xml</file>
+        <file>resources/www/img/favicon-16x16.png</file>
+        <file>resources/www/img/favicon-32x32.png</file>
+        <file>resources/www/img/favicon.ico</file>
+        <file>resources/www/img/grid25l.gif</file>
+        <file>resources/www/img/one_phases.svg</file>
+        <file>resources/www/img/manifest.json</file>
+        <file>resources/www/img/safari-pinned-tab.svg</file>
+        <file>resources/www/img/user.png</file>
+        <file>resources/www/img/three_phases.svg</file>
+        <file>resources/www/js/index.bundle.js</file>
+        <file>resources/www/js/jquery-1.10.2.min.js</file>
+        <file>resources/www/js/main.commands.js</file>
+        <file>resources/www/js/main.js</file>
+        <file>resources/www/js/main.modal.js</file>
+        <file>resources/www/js/jquery/jquery.min.js</file>
+        <file>resources/www/js/jquery/jquery-ui.min.js</file>
     </qresource>
 </RCC>

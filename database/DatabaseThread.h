@@ -19,6 +19,7 @@ signals:
 	void execute(const QStringList &queryList);
 
 	void results(const QList<QSqlRecord> &recordList, const QString &transactionId);
+	void error(const QString &transactionId);
 
 public slots:
 	QString executeQuery(const QString &query);

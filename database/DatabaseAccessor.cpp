@@ -24,6 +24,7 @@ void DatabaseAccessor::execute(const QString &query)
     if (!q.exec(query))
     {
         qWarning() << "Failed to execute SQL query:" << q.lastError().text();
+		emit error("");
         return;
     }
     else
@@ -45,6 +46,7 @@ void DatabaseAccessor::execute(const QString &query, const QString &transactionI
     if (!q.exec(query))
     {
         qWarning() << "Failed to execute SQL query:" << q.lastError().text();
+		emit error(transactionId);
         return;
     }
     else

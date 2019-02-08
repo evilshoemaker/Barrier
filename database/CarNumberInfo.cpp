@@ -6,6 +6,16 @@ CarNumberInfo::CarNumberInfo(QObject *parent) :
 
 }
 
+qlonglong CarNumberInfo::id()
+{
+	return id_;
+}
+
+void CarNumberInfo::setId(qlonglong id)
+{
+	id_ = id;
+}
+
 QString CarNumberInfo::carNumber()
 {
 	return carNumber_;

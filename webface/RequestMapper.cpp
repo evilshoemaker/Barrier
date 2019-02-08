@@ -1,37 +1,7 @@
 #include "RequestMapper.h"
 
-/*#include "controller/LoginController.h"
-#include "controller/SettingsController.h"
+#include "controller/LoginController.h"
 #include "controller/IndexController.h"
-#include "controller/SystemInfoController.h"
-#include "controller/MeasurementsController.h"
-#include "controller/EventsSubscribeController.h"
-#include "controller/SensorChartController.h"
-#include "controller/CommandsController.h"
-#include "controller/CcCommandsController.h"
-#include "controller/ScCommandsController.h"
-#include "controller/CalibrationCommandsController.h"
-#include "controller/SensorTaringController.h"
-#include "controller/CloudConnectTreeController.h"
-#include "controller/CloudConnectInfoController.h"
-#include "controller/SensorConnectInfoController.h"
-#include "controller/RssiInfoTreeController.h"
-#include "controller/RssiController.h"
-#include "controller/ChangePasswordController.h"
-
-#include "controller/energy/EnergyResourcesController.h"
-#include "controller/energy/EnergyResourcesTreeController.h"
-#include "controller/energy/EnergyResourcesTreeDataController.h"
-#include "controller/energy/EnergyResourcesBalanceSettings.h"
-
-#include "controller/energy/EnergyResourcesSchemController.h"
-#include "controller/energy/EnergyRecourcesSchemDataController.h"
-
-#include "controller/chart/CustomChartController.h"
-#include "controller/chart/AddSensorToChartController.h"
-#include "controller/chart/SensorCustomChartController.h"
-#include "controller/chart/CustomChartSettingsController.h"*/
-
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
@@ -52,7 +22,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 {
     QByteArray path = request.getPath();
 
-	/*if (path.startsWith("/css") || path.startsWith("/fonts")
+	if (path.startsWith("/css") || path.startsWith("/fonts")
             || path.startsWith("/js") || path.startsWith("/img")
             || path.startsWith("/amcharts") || path.startsWith("/chart"))
     {
@@ -61,22 +31,23 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
     }
 
 
-    QByteArray sessionId = sessionStore->getSessionId(request, response);
+	/*QByteArray sessionId = sessionStore->getSessionId(request, response);
     if (sessionId.isEmpty() && path != "/login")
     {
         //qDebug("RequestMapper: redirect to login page");
         response.redirect("/login");
         return;
-    }
+	}*/
 
     if (path == "/")
     {
-		response.redirect("/measurements");
+		//response.redirect("/car-list");
+		IndexController().service(request, response);
 		return;
     }
-    else if (path == "/login")
+	else if (path == "/login")
     {
-        LoginController().service(request, response);
+		LoginController().service(request, response);
     }
     else if (path == "/logout")
     {
@@ -85,7 +56,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 
         response.redirect("/");
     }
-    else if (path == "/settings")
+	/*else if (path == "/settings")
     {
         SettingsController().service(request, response);
     }
