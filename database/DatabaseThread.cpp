@@ -15,9 +15,11 @@ DatabaseThread::~DatabaseThread()
 	delete accessor_;
 }
 
-QString DatabaseThread::executeQuery(const QString &query)
+QString DatabaseThread::executeQuery(const QString &query, QString transactionId)
 {
-	QString transactionId = Util::createStringUuid();
+	if (transactionId.isEmpty())
+		transactionId = Util::createStringUuid();
+
 	emit execute(query, transactionId);
 	return transactionId;
 }

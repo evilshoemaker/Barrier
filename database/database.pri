@@ -3,11 +3,13 @@ HEADERS += \
     $$PWD/DatabaseThread.h \
     $$PWD/Database.h \
     $$PWD/CarNumberInfo.h \
-    $$PWD/CarNumberInfoModel.h
+    $$PWD/CarNumberInfoModel.h \
+    $$PWD/SyncQueryHandler.h
 
 SOURCES += \
     $$PWD/DatabaseAccessor.cpp \
     $$PWD/DatabaseThread.cpp \
     $$PWD/Database.cpp \
     $$PWD/CarNumberInfo.cpp \
-    $$PWD/CarNumberInfoModel.cpp
+    $$PWD/CarNumberInfoModel.cpp \
+    $$PWD/SyncQueryHandler.cpp

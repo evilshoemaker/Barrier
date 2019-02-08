@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include <QFile>
+#include <QSqlRecord>
 
 #include "core/Variables.h"
 #include "webface/WebFace.h"
@@ -119,6 +120,11 @@ void ignoreSigpipe()
 #endif
 }
 
+void registerMetaType()
+{
+	qRegisterMetaType<QList<QSqlRecord>>("QList<QSqlRecord>");
+}
+
 int main(int argc, char *argv[])
 {
 #ifndef QT_NO_DEBUG
@@ -128,6 +134,7 @@ int main(int argc, char *argv[])
 #endif
 
 	ignoreSigpipe();
+	registerMetaType();
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 

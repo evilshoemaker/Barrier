@@ -51,5 +51,7 @@
         <file>resources/www/js/main.modal.js</file>
         <file>resources/www/js/jquery/jquery.min.js</file>
         <file>resources/www/js/jquery/jquery-ui.min.js</file>
+        <file>resources/www/car-list.html</file>
+        <file>resources/www/logs.html</file>
     </qresource>
 </RCC>

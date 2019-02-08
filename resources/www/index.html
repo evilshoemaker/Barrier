@@ -4,25 +4,21 @@
 		<meta charset=utf-8> 
 		<meta http-equiv=X-UA-Compatible content="IE=edge"> 
 		<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"> 
-		<meta name=description content="BPS - dashboard"> 
-		<link rel=apple-touch-icon sizes=180x180 href=/img/apple-touch-icon.png> 
-		<link rel=icon type=/image/png sizes=32x32 href=/img/favicon-32x32.png> 
-		<link rel=icon type=/image/png sizes=16x16 href=/img/favicon-16x16.png> 
-		<link rel=manifest href=/img/manifest.json> 
-		<link rel=mask-icon href=/img/safari-pinned-tab.svg color=#5bbad5> 
-		<link rel="shortcut icon" href=/img/favicon.ico> 
-		<meta name=apple-mobile-web-app-title content="BPS Dashboard"> 
-		<meta name=application-name content="BPS Dashboard"> 
-		<meta name=msapplication-config content=/img/browserconfig.xml> 
+		<link rel=apple-touch-icon sizes=180x180 href=img/apple-touch-icon.png> 
+		<link rel=icon type=image/png sizes=32x32 href=img/favicon-32x32.png> 
+		<link rel=icon type=image/png sizes=16x16 href=img/favicon-16x16.png> 
+		<link rel=manifest href=img/manifest.json> 
+		<link rel=mask-icon href=img/safari-pinned-tab.svg color=#5bbad5> 
+		<link rel="shortcut icon" href=img/favicon.ico> 
+		<meta name=apple-mobile-web-app-title content="Система управления шлагбаумом"> 
+		<meta name=application-name content="Система управления шлагбаумом"> 
+		<meta name=msapplication-config content=img/browserconfig.xml> 
 		<meta name=theme-color content=#ffffff> 
+		<title>Система управления шлагбаумом</title> 
+		<link href="css/index.fonts.css" rel="stylesheet">
+		<link href="css/index.styles.css" rel="stylesheet">
+		<script src=js/main.js></script>
 
-		<script src="/amcharts/amcharts.js"></script>
-		<script src="/amcharts/serial.js"></script>
-		<script src="/amcharts/themes/light.js"></script>
-		<script src="/amcharts/plugins/export/export.min.js"></script>
-		<link rel="stylesheet" href="/amcharts/plugins/export/export.css" type="text/css" media="all" />
-
-		<title>BPS</title> 
 		<!--<script src=https://www.amcharts.com/lib/3/amcharts.js></script> 
 		<script src=https://www.amcharts.com/lib/3/serial.js></script> 
 		<script src=https://www.amcharts.com/lib/3/plugins/export/export.min.js></script> 
@@ -34,15 +30,17 @@
 		
 		<link href="/css/index.fonts.css" rel="stylesheet">
 		<link href="/css/index.styles.css" rel="stylesheet">
-		<link href="/css/d3-context-menu.css" rel="stylesheet">
+		<!--<link href="/css/d3-context-menu.css" rel="stylesheet">-->
 		<!--<link href="/css/f0.styles.css" rel="stylesheet">-->
 
-		<script src=/js/d3.v3.min.js></script>
+		<script src=/js/main.js></script>
+
+		<!--<script src=/js/d3.v3.min.js></script>
 		<script src="/js/jquery-1.10.2.min.js"></script>
 		<script src=/js/main.js></script>
 		<script src=/js/main.modal.js></script>
 		<script src=/js/main.commands.js></script>
-		<script src=/js/d3-context-menu.js></script>
+		<script src=/js/d3-context-menu.js></script>-->
 	</head> 
 	<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"> 
 		<div id=root>
@@ -56,7 +54,7 @@
 					<ul class="ml-auto mr-4 navbar-nav">
 						<li class="dropdown nav-item">
 							<a aria-haspopup="true" href="./logout" class="nav-link" aria-expanded="false">
-								<span class="login">Logout</span>
+								<span class="login">Выход</span>
 							</a>
 						</li>
 					</ul>
@@ -65,7 +63,7 @@
 					<div class="sidebar">
 						<nav class="sidebar-nav">
 							<ul class="nav" id="nav_bar">
-								<li class="nav-title">Administration </li>
+								<li class="nav-title">Администрирование </li>
 
 								<li class="nav-item nav-dropdown {isOpenMeasurementsGroup}">
 									<a class="nav-link nav-dropdown-toggle" href=""><i class="icon-grid"></i>Measurements</a>
@@ -120,15 +118,12 @@
 						</div>
 					</main>
 				</div>
-				<footer class="app-footer"><span>© 2018 BPS Connected-BIM</span>
+				<footer class="app-footer"><span>© 2019 digios</span>
 				</footer>
 			</div>
 		</div> 
 
 		<div id='modal_div'></div>
-		<!--<menu class="context-menu"> 
-			menu menu
-		</menu>-->
 	</div>
 	</body> 
 </html> 

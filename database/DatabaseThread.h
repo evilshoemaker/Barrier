@@ -22,7 +22,7 @@ signals:
 	void error(const QString &transactionId);
 
 public slots:
-	QString executeQuery(const QString &query);
+	QString executeQuery(const QString &query, QString transactionId = "");
 
 protected:
 	void run() override;

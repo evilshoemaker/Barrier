@@ -2,6 +2,7 @@
 
 #include "controller/LoginController.h"
 #include "controller/IndexController.h"
+#include "controller/CarListController.h"
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
@@ -41,8 +42,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 
     if (path == "/")
     {
-		//response.redirect("/car-list");
-		IndexController().service(request, response);
+		response.redirect("/car-list");
 		return;
     }
 	else if (path == "/login")
@@ -56,6 +56,10 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 
         response.redirect("/");
     }
+	else if (path == "/car-list")
+	{
+		CarListController().service(request, response);
+	}
 	/*else if (path == "/settings")
     {
         SettingsController().service(request, response);

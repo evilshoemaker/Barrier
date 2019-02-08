@@ -189,6 +189,14 @@ void StaticFileController::setContentType(QString fileName, HttpResponse& respon
     {
         response.setHeader("Content-Type", "application/font-otf");
     }
+	else if (fileName.endsWith(".ico"))
+	{
+		response.setHeader("Content-Type", "image/x-icon");
+	}
+	else if (fileName.endsWith(".json"))
+	{
+		response.setHeader("Content-Type", "application/json");
+	}
     // Todo: add all of your content types
     else
     {

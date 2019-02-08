@@ -13,7 +13,7 @@ class Database : public QObject
 public:
 	static Database *instance();
 
-	//static
+	static QString requestAllCarList();
 
 signals:
 	void results(const QList<QSqlRecord> &recordList, const QString &transactionId);
