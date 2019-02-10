@@ -23,6 +23,7 @@ signals:
 
 public slots:
 	QString executeQuery(const QString &query, QString transactionId = "");
+    void stop();
 
 protected:
 	void run() override;

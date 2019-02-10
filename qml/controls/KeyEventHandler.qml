@@ -1,13 +1,20 @@
 import QtQuick 2.0
 
 Item {
+    id: control
+
     focus: true
+
+    property bool enabled: true
 
     signal nextDigit(string digit)
     signal deleteDigit()
 
 
     Keys.onPressed: {
+        if (!enabled)
+            return;
+
         if (event.key === Qt.Key_0 ||
                 event.key === Qt.Key_1 ||
                 event.key === Qt.Key_2 ||

@@ -3,11 +3,14 @@
 
 #include <QAbstractListModel>
 
+#include "CarNumberInfoMapper.h"
+
 class CarNumberInfo;
 
 class CarNumberInfoModel : public QAbstractListModel
 {
 	Q_OBJECT
+    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 
 public:
 	explicit CarNumberInfoModel(QObject *parent = nullptr);
@@ -28,8 +31,19 @@ public:
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    QHash<int, QByteArray> roleNames() const override;
+
+    Q_INVOKABLE void search(const QString &number);
+
+    void clear();
+
+signals:
+    void countChanged();
+    void searchCompleted(bool isSearch);
+
 private:
 	QList<CarNumberInfo *> data_;
+    CarNumberInfoMapper mapper_;
 };
 
 #endif // CARNUMBERINFOMODEL_H

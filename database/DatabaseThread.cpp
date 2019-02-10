@@ -12,6 +12,7 @@ DatabaseThread::DatabaseThread(QObject *parent) :
 
 DatabaseThread::~DatabaseThread()
 {
+    stop();
 	delete accessor_;
 }
 
@@ -21,7 +22,12 @@ QString DatabaseThread::executeQuery(const QString &query, QString transactionId
 		transactionId = Util::createStringUuid();
 
 	emit execute(query, transactionId);
-	return transactionId;
+    return transactionId;
+}
+
+void DatabaseThread::stop()
+{
+    exit();
 }
 
 void DatabaseThread::run()

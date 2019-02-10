@@ -23,28 +23,28 @@ public:
 	qlonglong id();
 	void setId(qlonglong id);
 
-	QString carNumber();
+    QString carNumber() const;
 	void setCarNumber(const QString &carNumber);
 
-	QString ownerName();
+    QString ownerName() const;
 	void setOwnerName(const QString &ownerName);
 
-	QString ownerSurname();
+    QString ownerSurname() const;
 	void setOwnerSurname(const QString &ownerSurname);
 
-	QString ownerPatronymic();
+    QString ownerPatronymic() const;
 	void setOwnerPatronymic(const QString &ownerPatronymic);
 
-	QString apartmentNumber();
+    QString apartmentNumber() const;
 	void setApartmentNumber(const QString &apartmentNumber);
 
-	QString parkingPlace();
+    QString parkingPlace() const;
 	void setParkingPlace(const QString &parkingPlace);
 
-	QString phoneNumber();
+    QString phoneNumber() const;
 	void setPhoneNumber(const QString &phoneNumber);
 
-	QString description();
+    QString description() const;
 	void setDescription(const QString &description);
 
 signals:

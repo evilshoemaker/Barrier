@@ -4,7 +4,8 @@ HEADERS += \
     $$PWD/Database.h \
     $$PWD/CarNumberInfo.h \
     $$PWD/CarNumberInfoModel.h \
-    $$PWD/SyncQueryHandler.h
+    $$PWD/SyncQueryHandler.h \
+    $$PWD/CarNumberInfoMapper.h
 
 SOURCES += \
     $$PWD/DatabaseAccessor.cpp \
@@ -12,4 +13,5 @@ SOURCES += \
     $$PWD/Database.cpp \
     $$PWD/CarNumberInfo.cpp \
     $$PWD/CarNumberInfoModel.cpp \
-    $$PWD/SyncQueryHandler.cpp
+    $$PWD/SyncQueryHandler.cpp \
+    $$PWD/CarNumberInfoMapper.cpp

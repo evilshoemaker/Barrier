@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QSqlRecord>
 
+#include "CarNumberInfo.h"
+
 class DatabaseThread;
 
 class Database : public QObject
@@ -13,7 +15,11 @@ class Database : public QObject
 public:
 	static Database *instance();
 
-	static QString requestAllCarList();
+    static QString executeQuery(const QString &query, const QString &transactionId = "");
+
+    static QString requestAllCarList(const QString &transactionId = "");
+
+    static QString addCar(const CarNumberInfo &car);
 
 signals:
 	void results(const QList<QSqlRecord> &recordList, const QString &transactionId);

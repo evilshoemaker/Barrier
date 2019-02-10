@@ -13,6 +13,6 @@ void IndexController::service(HttpRequest &request, HttpResponse &response)
     response.setHeader("Content-Type", "text/html; charset=UTF-8");
 
     Template t = RequestMapper::templateCache->getTemplate("index", language);
-	t.setVariable("isActiveMeasurements", "active");
+    t.setVariable("isActiveCarList", "active");
     response.write(t.toUtf8(), true);
 }

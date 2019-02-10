@@ -16,7 +16,7 @@ void CarNumberInfo::setId(qlonglong id)
 	id_ = id;
 }
 
-QString CarNumberInfo::carNumber()
+QString CarNumberInfo::carNumber() const
 {
 	return carNumber_;
 }
@@ -30,7 +30,7 @@ void CarNumberInfo::setCarNumber(const QString &carNumber)
 	emit carNumberChanged();
 }
 
-QString CarNumberInfo::ownerName()
+QString CarNumberInfo::ownerName() const
 {
 	return ownerName_;
 }
@@ -44,7 +44,7 @@ void CarNumberInfo::setOwnerName(const QString &ownerName)
 	emit ownerNameChanged();
 }
 
-QString CarNumberInfo::ownerSurname()
+QString CarNumberInfo::ownerSurname() const
 {
 	return ownerSurname_;
 }
@@ -58,7 +58,7 @@ void CarNumberInfo::setOwnerSurname(const QString &ownerSurname)
 	emit ownerSurnameChanged();
 }
 
-QString CarNumberInfo::ownerPatronymic()
+QString CarNumberInfo::ownerPatronymic() const
 {
 	return ownerPatronymic_;
 }
@@ -72,7 +72,7 @@ void CarNumberInfo::setOwnerPatronymic(const QString &ownerPatronymic)
 	emit ownerPatronymicChanged();
 }
 
-QString CarNumberInfo::apartmentNumber()
+QString CarNumberInfo::apartmentNumber() const
 {
 	return apartmentNumber_;
 }
@@ -86,7 +86,7 @@ void CarNumberInfo::setApartmentNumber(const QString &apartmentNumber)
 	emit apartmentNumberChanged();
 }
 
-QString CarNumberInfo::parkingPlace()
+QString CarNumberInfo::parkingPlace() const
 {
 	return parkingPlace_;
 }
@@ -100,7 +100,7 @@ void CarNumberInfo::setParkingPlace(const QString &parkingPlace)
 	emit parkingPlaceChanged();
 }
 
-QString CarNumberInfo::phoneNumber()
+QString CarNumberInfo::phoneNumber() const
 {
 	return phoneNumber_;
 }
@@ -114,7 +114,7 @@ void CarNumberInfo::setPhoneNumber(const QString &phoneNumber)
 	emit phoneNumberChanged();
 }
 
-QString CarNumberInfo::description()
+QString CarNumberInfo::description() const
 {
 	return description_;
 }

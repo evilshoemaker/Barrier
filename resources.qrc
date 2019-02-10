@@ -33,7 +33,6 @@
         <file>resources/www/fonts/fontawesome-webfont.ttf</file>
         <file>resources/www/fonts/fontawesome-webfont.woff</file>
         <file>resources/www/fonts/fontawesome-webfont.woff2</file>
-        <file>resources/www/fonts/FontAwesome.otf</file>
         <file>resources/www/img/browserconfig.xml</file>
         <file>resources/www/img/favicon-16x16.png</file>
         <file>resources/www/img/favicon-32x32.png</file>
@@ -41,7 +40,6 @@
         <file>resources/www/img/grid25l.gif</file>
         <file>resources/www/img/one_phases.svg</file>
         <file>resources/www/img/manifest.json</file>
-        <file>resources/www/img/safari-pinned-tab.svg</file>
         <file>resources/www/img/user.png</file>
         <file>resources/www/img/three_phases.svg</file>
         <file>resources/www/js/index.bundle.js</file>
@@ -53,5 +51,10 @@
         <file>resources/www/js/jquery/jquery-ui.min.js</file>
         <file>resources/www/car-list.html</file>
         <file>resources/www/logs.html</file>
+        <file>resources/www/css/fonts/fontawesome-webfont.674f50d287a8c48dc19ba404d20fe713.eot</file>
+        <file>resources/www/css/fonts/fontawesome-webfont.912ec66d7572ff821749319396470bde.svg</file>
+        <file>resources/www/css/fonts/fontawesome-webfont.b06871f281fee6b241d60582ae9369b9.ttf</file>
+        <file>resources/www/css/fonts/fontawesome-webfont.fee66e712a8a08eef5805a46892932ad.woff</file>
+        <file>qml/controls/CarNumber.qml</file>
     </qresource>
 </RCC>

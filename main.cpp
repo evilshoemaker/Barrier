@@ -7,6 +7,8 @@
 #include "core/Variables.h"
 #include "webface/WebFace.h"
 
+#include "database/CarNumberInfoModel.h"
+
 #include <csignal>
 
 void writeLogMessage(const QString &message)
@@ -125,6 +127,11 @@ void registerMetaType()
 	qRegisterMetaType<QList<QSqlRecord>>("QList<QSqlRecord>");
 }
 
+void qmlRegisterTypes()
+{
+    qmlRegisterType<CarNumberInfoModel>("app", 1, 0, "CarNumberInfoModel");
+}
+
 int main(int argc, char *argv[])
 {
 #ifndef QT_NO_DEBUG
@@ -135,18 +142,30 @@ int main(int argc, char *argv[])
 
 	ignoreSigpipe();
 	registerMetaType();
+    qmlRegisterTypes();
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
+    //QRegularExpression re("^(?<date>\\d\\d)/(?<month>\\d\\d)/(?<year>\\d\\d\\d\\d)$");
+
+    QRegularExpression re("^(?<char1>\\w)(?<number>\\d\\d\\d)(?<char2>\\w\\w)(?<region>\\d\\d\\d)$");
+
+    QRegularExpressionMatch match = re.match("В456МИ124");
+    if (match.hasMatch()) {
+        QString date = match.captured("char1"); // date == "08"
+        QString month = match.captured("number"); // month == "12"
+        QString year = match.captured("char2"); // year == 1985
+    }
+
 	WebFace webFace;
 	webFace.init();
 
-	/*QQmlApplicationEngine engine;
+    QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
-		return -1;*/
+        return -1;
 
     return app.exec();
 }

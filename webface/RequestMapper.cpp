@@ -3,6 +3,9 @@
 #include "controller/LoginController.h"
 #include "controller/IndexController.h"
 #include "controller/CarListController.h"
+#include "controller/SettingsController.h"
+#include "controller/LogsController.h"
+#include "controller/AddCarController.h"
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
@@ -49,6 +52,22 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
     {
 		LoginController().service(request, response);
     }
+	else if (path == "/car-list")
+	{
+		CarListController().service(request, response);
+	}
+    else if (path == "/logs")
+    {
+        LogsController().service(request, response);
+    }
+    else if (path == "/settings")
+    {
+        SettingsController().service(request, response);
+    }
+    else if (path == "/car-list/add-car")
+    {
+        AddCarController().service(request, response);
+    }
     else if (path == "/logout")
     {
         HttpSession session = sessionStore->getSession(request, response);
@@ -56,118 +75,8 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 
         response.redirect("/");
     }
-	else if (path == "/car-list")
-	{
-		CarListController().service(request, response);
-	}
-	/*else if (path == "/settings")
-    {
-        SettingsController().service(request, response);
-    }
-    else if (path == "/settings/change-password")
-    {
-        ChangePasswordController().service(request, response);
-    }
-    else if (path == "/info")
-    {
-        SystemInfoController().service(request, response);
-    }
-    else if (path == "/measurements")
-    {
-        MeasurementsController().service(request, response);
-    }
-	else if (path == "/measurements/chart")
-	{
-		CustomChartController().service(request, response);
-	}
-	else if (path == "/commands")
-	{
-		CommandsController().service(request, response);
-	}
-	else if (path == "/commands/cc")
-	{
-		CcCommandsController().service(request, response);
-	}
-	else if (path == "/commands/sc")
-	{
-		ScCommandsController().service(request, response);
-	}
-	else if (path == "/commands/calibration")
-	{
-		CalibrationCommandsController().service(request, response);
-	}
-    else if (path == "/events/subscribe")
-    {
-        EventsSubscribeController().service(request, response);
-    }
-	else if (path == "/sensors/tree")
-	{
-		CloudConnectTreeController().service(request, response);
-	}
-    else if (path.startsWith("/sensors/chart"))
-    {
-        SensorChartController().service(request, response);
-    }
-	else if (path == "/sensors/custom_chart/add_sensor")
-	{
-		AddSensorToChartController().service(request, response);
-	}
-	else if (path.startsWith("/sensors/custom-chart/data"))
-	{
-		SensorCustomChartController().service(request, response);
-	}
-    else if (path.startsWith("/sensors/custom-chart/settings"))
-    {
-        CustomChartSettingsController().service(request, response);
-    }
-    else if (path == "/sensors/cloudConnectInfo")
-    {
-        CloudConnectInfoController().service(request, response);
-    }
-    else if (path == "/sensors/sensorConnectInfo")
-    {
-        SensorConnectInfoController().service(request, response);
-    }
-    else if (path == "/sensors/sensorTaring")
-    {
-        SensorTaringController().service(request, response);
-    }
-	else if (path == "/network")
-	{
-		RssiController().service(request, response);
-	}
-	else if (path == "/network/tree")
-	{
-		RssiInfoTreeController().service(request, response);
-	}
-
-	else if (path == "/energy")
-	{
-		EnergyResourcesController().service(request, response);
-	}
-	else if (path == "/energy/tree")
-	{
-		EnergyResourcesTreeController().service(request, response);
-	}
-    else if (path == "/energy/tree/data")
-	{
-		EnergyResourcesTreeDataController().service(request, response);
-	}
-    else if (path.startsWith("/energy/balance-settings"))
-	{
-		EnergyResourcesBalanceSettings().service(request, response);
-    }
-    else if (path == "/energy/schem/settings")
-    {
-        EnergyResourcesSchemController().service(request, response);
-    }
-	else if (path == "/energy/schem/list")
-	{
-		EnergyRecourcesSchemDataController().service(request, response);
-	}
-
     else
     {
         response.setStatus(404, "Page not found");
-	}*/
+    }
 }

@@ -15,9 +15,9 @@
 		<meta name=msapplication-config content=img/browserconfig.xml> 
 		<meta name=theme-color content=#ffffff> 
 		<title>Система управления шлагбаумом</title> 
-		<link href="css/index.fonts.css" rel="stylesheet">
-		<link href="css/index.styles.css" rel="stylesheet">
-		<script src=js/main.js></script>
+		<!--<link href="css/index.fonts.css" rel="stylesheet">-->
+		<!--<link href="css/index.styles.css" rel="stylesheet">-->
+		<!--<script src=js/main.js></script>-->
 
 		<!--<script src=https://www.amcharts.com/lib/3/amcharts.js></script> 
 		<script src=https://www.amcharts.com/lib/3/serial.js></script> 
@@ -34,6 +34,7 @@
 		<!--<link href="/css/f0.styles.css" rel="stylesheet">-->
 
 		<script src=/js/main.js></script>
+		<script src=/js/main.modal.js></script>
 
 		<!--<script src=/js/d3.v3.min.js></script>
 		<script src="/js/jquery-1.10.2.min.js"></script>
@@ -49,8 +50,7 @@
 					<button type="button" class="d-lg-none navbar-toggler">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<a href="#" class="navbar-brand"></a>
-					<div class="page-header">{title}</div>
+					<div class="page-header">Система управления шлагбаумом</div>
 					<ul class="ml-auto mr-4 navbar-nav">
 						<li class="dropdown nav-item">
 							<a aria-haspopup="true" href="./logout" class="nav-link" aria-expanded="false">
@@ -65,28 +65,19 @@
 							<ul class="nav" id="nav_bar">
 								<li class="nav-title">Администрирование </li>
 
-								<li class="nav-item nav-dropdown {isOpenMeasurementsGroup}">
-									<a class="nav-link nav-dropdown-toggle" href=""><i class="icon-grid"></i>Measurements</a>
-									<ul class="nav-dropdown-items">
-										<li class="nav-item">
-											<a class="nav-link {isActiveMeasurements}" aria-current="false" href="/measurements"><i class="icon-graph"></i>Measurements</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link {isActiveChart}" aria-current="false" href="/measurements/chart"><i class="icon-chart"></i>Chart</a>
-										</li>
-									</ul>
-								</li>
-
 								<li class="nav-item">
-									<a class="nav-link {isActiveNetwork}" aria-current="false" href="/network"><i class="icon-feed"></i>Network</a>
+									<a class="nav-link {isActiveCarList}" aria-current="false" href="/car-list"><i class="fa fa-car" aria-hidden="true"></i>Список автомобилей</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link {isActiveEnergy}" aria-current="false" href="/energy"><i class="icon-energy"></i>Energy resources</a>
+									<a class="nav-link {isActiveLogs}" aria-current="false" href="/logs"><i class="fa fa-history" aria-hidden="true"></i>Логи</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link {isActiveSettings}" aria-current="false" href="/settings"><i class="fa fa-cog" aria-hidden="true"></i>Настройки</a>
 								</li>
 								<!--<li class="nav-item">
 									<a class="nav-link {isActiveCommand}" aria-current="false" href="./commands"><i class="icon-grid"></i>Commands</a>
 								</li>-->
-								<li class="nav-item nav-dropdown {isOpenCommandsGroup}">
+								<!--<li class="nav-item nav-dropdown {isOpenCommandsGroup}">
 									<a class="nav-link nav-dropdown-toggle" href=""><i class="icon-grid"></i>Commands</a>
 									<ul class="nav-dropdown-items">
 										<li class="nav-item">
@@ -105,7 +96,7 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link {isActiveInfo}" aria-current="false" href="/info"><i class="icon-info"></i>System info</a>
-								</li>
+								</li>-->
 							</ul>
 						</nav>
 					</div>
