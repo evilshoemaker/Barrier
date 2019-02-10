@@ -5,6 +5,7 @@
 #include <QSqlRecord>
 
 #include "core/Variables.h"
+#include "core/CarNumberParser.h"
 #include "webface/WebFace.h"
 
 #include "database/CarNumberInfoModel.h"
@@ -130,6 +131,7 @@ void registerMetaType()
 void qmlRegisterTypes()
 {
     qmlRegisterType<CarNumberInfoModel>("app", 1, 0, "CarNumberInfoModel");
+    qmlRegisterType<CarNumberParser>("app", 1, 0, "CarNumberParser");
 }
 
 int main(int argc, char *argv[])
@@ -147,17 +149,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-
-    //QRegularExpression re("^(?<date>\\d\\d)/(?<month>\\d\\d)/(?<year>\\d\\d\\d\\d)$");
-
-    QRegularExpression re("^(?<char1>\\w)(?<number>\\d\\d\\d)(?<char2>\\w\\w)(?<region>\\d\\d\\d)$");
-
-    QRegularExpressionMatch match = re.match("В456МИ124");
-    if (match.hasMatch()) {
-        QString date = match.captured("char1"); // date == "08"
-        QString month = match.captured("number"); // month == "12"
-        QString year = match.captured("char2"); // year == 1985
-    }
 
 	WebFace webFace;
 	webFace.init();

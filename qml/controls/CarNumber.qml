@@ -3,6 +3,8 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+import app 1.0
+
 Item {
     id: control
 
@@ -27,10 +29,14 @@ Item {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 24
-                Layout.rightMargin: 24
+                //Layout.leftMargin: 15
+                //Layout.rightMargin: 15
 
                 spacing: 0
+
+                Item {
+                    Layout.fillWidth: true
+                }
 
                 Text {
 
@@ -39,14 +45,12 @@ Item {
                     font.pixelSize: 36
                     font.family: openSansRegular.name
 
-                    opacity: 0.5
-
-                    text: "A"
+                    text: carNumberParser.char1
                 }
 
                 Text {
+                    Layout.leftMargin: 10
 
-                    Layout.fillWidth: true
                     Layout.alignment: Qt.AlignBottom
 
                     horizontalAlignment: Text.AlignHCenter
@@ -54,21 +58,10 @@ Item {
                     font.pixelSize: 42
                     font.family: openSansRegular.name
 
-                    opacity: control.number.length > 0 ? 1 : 0.5
+                    //opacity: control.number.length > 0 ? 1 : 0.5
 
-                    text: control.number.length > 0 ? control.number : "000"
+                    text: carNumberParser.digital//control.number.length > 0 ? control.number : "000"
                 }
-
-                /*Text {
-                    Layout.alignment: Qt.AlignBottom
-
-                    font.pixelSize: 36
-                    font.family: openSansRegular.name
-
-                    opacity: 0.5
-
-                    text: "A"
-                }*/
 
                 Text {
                     Layout.leftMargin: 10
@@ -77,9 +70,11 @@ Item {
                     font.pixelSize: 36
                     font.family: openSansRegular.name
 
-                    opacity: 0.5
+                    text: carNumberParser.char2
+                }
 
-                    text: "A"
+                Item {
+                    Layout.fillWidth: true
                 }
 
             }
@@ -110,9 +105,9 @@ Item {
                         font.pixelSize: 26
                         font.family: openSansRegular.name
 
-                        opacity: 0.5
+                        //opacity: 0.5
 
-                        text: "000"
+                        text: carNumberParser.region
                     }
 
                     RowLayout {
@@ -144,5 +139,10 @@ Item {
                 }
             }
         }
+    }
+
+    CarNumberParser {
+        id: carNumberParser
+        number: control.number
     }
 }
