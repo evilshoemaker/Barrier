@@ -17,9 +17,13 @@ public:
 
     static QString executeQuery(const QString &query, const QString &transactionId = "");
 
+	static void emptySelect();
+
     static QString requestAllCarList(const QString &transactionId = "");
 
     static QString addCar(const CarNumberInfo &car);
+
+	static QString removeCar(qlonglong id);
 
 signals:
 	void results(const QList<QSqlRecord> &recordList, const QString &transactionId);

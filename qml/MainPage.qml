@@ -80,23 +80,18 @@ Item {
         ListView {
             id: carNumberListView
             model: carNumberModel
-            spacing: 8
+            spacing: 10
 
+            Layout.topMargin: 24
             Layout.leftMargin: 45
             Layout.rightMargin: 45
 
-            //visible: carNumberModel.count > 0
-            /*delegate: Text {
-                text: carNumber
-            }*/
             delegate: CarNumber {
-                //anchors.horizontalCenter: carNumberListView.horizontalCenter
                 x: (carNumberListView.width / 2) - (width / 2)
                 number: carNumber
             }
 
             Layout.fillHeight: true
-            //Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
         }
     }
@@ -106,9 +101,6 @@ Item {
         enabled: page.state == 'inputState'
 
         onNextDigit: { 
-            /*if (page.state != 'inputState')
-                return;*/
-
             carNumber.number += digit
 
             if (carNumber.number.length == 3)
@@ -118,9 +110,6 @@ Item {
         }
 
         onDeleteDigit: {
-            /*if (page.state != 'inputState')
-                return;*/
-
             carNumber.number = carNumber.number.substring(0, carNumber.number.length - 1)
         }
     }

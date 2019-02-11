@@ -81,7 +81,7 @@ Item {
 
             Item {
                 Layout.fillHeight: true
-                Layout.preferredWidth: 100
+                Layout.preferredWidth: 80
 
                 Rectangle {
                     anchors.left: parent.left

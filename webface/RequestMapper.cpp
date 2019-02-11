@@ -6,6 +6,8 @@
 #include "controller/SettingsController.h"
 #include "controller/LogsController.h"
 #include "controller/AddCarController.h"
+#include "controller/EditCarController.h"
+#include "controller/RemoveCarController.h"
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
@@ -68,6 +70,14 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
     {
         AddCarController().service(request, response);
     }
+	else if (path == "/car-list/remove-car")
+	{
+		RemoveCarController().service(request, response);
+	}
+	else if (path == "/car-list/edit-car")
+	{
+		EditCarController().service(request, response);
+	}
     else if (path == "/logout")
     {
         HttpSession session = sessionStore->getSession(request, response);

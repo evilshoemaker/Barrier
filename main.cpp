@@ -9,6 +9,7 @@
 #include "webface/WebFace.h"
 
 #include "database/CarNumberInfoModel.h"
+#include "database/Database.h"
 
 #include <csignal>
 
@@ -150,13 +151,15 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+	Database::emptySelect();
+
 	WebFace webFace;
 	webFace.init();
 
-    QQmlApplicationEngine engine;
+	/*QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
-        return -1;
+		return -1;*/
 
     return app.exec();
 }

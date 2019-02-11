@@ -39,6 +39,7 @@ function saveNewCar()
 
 			if (result.result === "success") {
 				showModalInfoDialog("Информация", "Запись успешно добавлена");
+				location.reload();
 			}
 			else if (result.result == "error")
 			{
@@ -86,6 +87,55 @@ function getModalInfoDialogHtml(title, text)
 							+ '</div>'
 							+ '<div class="modal-footer">'
 								+ '<button class="ml-auto btn btn-info" id="modal_info_ok_button">Ok</button>'
+							+ '</div>'
+					+ '</div>'
+				+ '</div>'
+			+ '</div>'
+			+ '<div class="modal-backdrop fade"></div>'
+		+ '</div>';
+}
+
+function showСonfirmRemoveCarDialog(id)
+{
+	document.getElementById("modal_div").innerHTML = getСonfirmRemoveCarModalDialog(id);
+
+	document.getElementById("modal_close_button").addEventListener("click", hideModal);
+	document.getElementById("swith_output_modal_cancel_button").addEventListener("click", hideModal);
+	document.getElementById("swith_output_modal_yes_button").addEventListener("click", removeCar);
+
+	setTimeout(function run() {
+		document.getElementsByClassName("modal fade")[0].classList.toggle("show");
+		document.getElementsByClassName("modal-backdrop fade")[0].classList.toggle("show");
+		document.getElementsByClassName("app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden")[0].classList.toggle("modal-open");
+	}, 200);
+
+	return false;
+}
+
+function getСonfirmRemoveCarModalDialog(id)
+{
+	return '<div tabindex="-1" style="position: relative; z-index: 1050;">'
+			+ '<div class="w2">'
+				+ '<div class="Chart modal fade" role="dialog" tabindex="-1" style="display: block;">'
+					+ '<div class="modal-dialog modal-sm" role="document">'
+						+ '<div class="modal-content">'
+							+ '<div class="modal-header">'
+								+ '<h5 class="modal-title"> Внимание</h5>'
+								+ '<button type="button" class="close" id="modal_close_button" aria-label="Close"><span aria-hidden="true">×</span>'
+								+ '</button>'
+							+ '</div>'
+							+ '<div class="modal-body">'
+								+ '<div class="row">'
+									+ '<div class="col-12 col-md-12">'
+										+ '<span>Вы действительно хотите удалить выбранню запись?</span>'
+									+ '</div>'
+								+ '</div>'
+							+ '</div>'
+							+ '<div class="modal-footer">'
+								+ '<a class="mr-1 ml-auto btn btn-danger" id="swith_output_modal_yes_button" href="/car-list/remove-car?'
+									+ 'id=' + id
+									+'">Удалить</a>'
+								+ '<button class="btn btn-secondary" id="swith_output_modal_cancel_button">Отмена</button>'
 							+ '</div>'
 					+ '</div>'
 				+ '</div>'

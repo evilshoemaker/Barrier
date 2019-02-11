@@ -77,11 +77,12 @@ void CarNumberInfoModel::search(const QString &number)
         return;
     }
 
-    beginInsertRows(QModelIndex(), 0, list.size());
+	beginInsertRows(QModelIndex(), 0, list.size() - 1);
     data_.append(list);
     endInsertRows();
-    emit dataChanged(createIndex(0, 0, static_cast<void *>(0)),
-                     createIndex(data_.size() - 1, 0, static_cast<void *>(0)));
+
+	emit dataChanged(createIndex(0, 0, static_cast<void *>(0)),
+					 createIndex(data_.size() - 1, 0, static_cast<void *>(0)));
     emit countChanged();
     emit searchCompleted(true);
 }
@@ -95,7 +96,7 @@ void CarNumberInfoModel::clear()
     data_.clear();
     endRemoveRows();
 
-    QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
-    emit dataChanged(index, index);
+	QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
+	emit dataChanged(index, index);
     emit countChanged();
 }

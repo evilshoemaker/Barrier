@@ -10,7 +10,13 @@ Database *Database::instance()
 
 QString Database::executeQuery(const QString &query, const QString &transactionId)
 {
-    return Database::instance()->databaseThread_->executeQuery(query, transactionId);
+	return Database::instance()->databaseThread_->executeQuery(query, transactionId);
+}
+
+void Database::emptySelect()
+{
+	QString sql = QString("SELECT 1");
+	Database::instance()->databaseThread_->executeQuery(sql);
 }
 
 QString Database::requestAllCarList(const QString &transactionId)
@@ -21,7 +27,7 @@ QString Database::requestAllCarList(const QString &transactionId)
 
 QString Database::addCar(const CarNumberInfo &car)
 {
-    QString sql = QString("INSERT INTO cars ("
+	const QString sql = QString("INSERT INTO cars ("
                           " car_number, "
                           " surname, "
                           " name, "
@@ -49,7 +55,14 @@ QString Database::addCar(const CarNumberInfo &car)
                                                car.parkingPlace(),
                                                car.phoneNumber(),
                                                car.phoneNumber())
-                                         );
+										  );
+}
+
+QString Database::removeCar(qlonglong id)
+{
+	const QString sql = QString("DELETE FROM cars WHERE id=%1");
+	return Database::instance()->
+			databaseThread_->executeQuery(sql.arg(id));
 }
 
 Database::Database(QObject *parent) :

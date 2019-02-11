@@ -27,10 +27,15 @@ void CarListController::service(HttpRequest &request, HttpResponse &response)
 	{
         QList<QSqlRecord> records = queryHandler.records();
 
+		for (const QSqlRecord &record : records)
+		{
+			QString carId = record.value("id").toString();
 
-
-        for (const QSqlRecord &record : records) {
             tableBody.append("<tr class=\"user-item\">");
+
+			tableBody.append(QString("<form id=\"row_form_id_%1\"></form>"
+									 "<input type=\"hidden\" name=\"id\" value=\"%1\" form=\"row_form_id_%1\"/>")
+										.arg(carId));
 
             tableBody.append(QString("<td>%1</td>").arg(record.value("car_number").toString()));
             tableBody.append(QString("<td>%1 %2 %3</td>")
@@ -41,10 +46,10 @@ void CarListController::service(HttpRequest &request, HttpResponse &response)
             tableBody.append(QString("<td>%1</td>").arg(record.value("apartment_number").toString()));
             tableBody.append(QString("<td>%1</td>").arg(record.value("parking_place").toString()));
             tableBody.append(QString("<td>%1</td>").arg(record.value("description").toString()));
-            tableBody.append("<td class=\"action-btns\"> "
-                             "  <button type=\"submit\" class=\"mr-1 btn btn-info btn-sm\" form=\"setting_sensor_calibration_form\">Редактировать</button>"
-                             "  <button type=\"reset\" class=\"btn btn-warning btn-sm\" form=\"setting_sensor_calibration_form\">Удалить</button>"
-                             "</td>");
+			tableBody.append(QString("<td class=\"action-btns\" width=\"210\"> "
+							 "  <button type=\"submit\" name=\"car_edit_button\" class=\"mr-1 btn btn-info btn-sm\" form=\"row_form_id_%1\" onclick=\"return editCar();\" value=\"%1\">Редактировать</button>"
+							 "  <button type=\"submit\" name=\"car_remove_button\" class=\"btn btn-warning btn-sm\" form=\"row_form_id_%1\" onclick=\"return tryingToRemoveCar();\" value=\"%1\">Удалить</button>"
+							 "</td>").arg(carId));
 
             tableBody.append("</tr>");
         }
