@@ -1,0 +1,27 @@
+<div class="Profile animated fadeIn" id="content">
+	<form class id="settingsForm" action="./settings" method="POST"> 
+
+	<div class="card">
+		<div class="card-header">
+			<i class="icon-drawer"></i> Авторизация
+		</div>
+		<div class="card-body">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<span class="key">Логин:</span>
+					<input type="text" name="login" placeholder="Login" class="form-control" value="{login}">
+				</li>
+				<li class="list-group-item">
+					<button type="" class="btn btn-info" id="changePasswordButton">Изменить пароль</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-info" id="settingsSaveButton">Сохранить</button>
+	<p/>
+	</form>
+</div>
+
+<script>document.getElementById("changePasswordButton").addEventListener("click", showModalChangePasswordDialog);</script>
+</body>

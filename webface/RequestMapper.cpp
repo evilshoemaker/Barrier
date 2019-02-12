@@ -8,13 +8,14 @@
 #include "controller/AddCarController.h"
 #include "controller/EditCarController.h"
 #include "controller/RemoveCarController.h"
+#include "controller/ChangePasswordController.h"
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
 StaticFileController *RequestMapper::staticFileController = nullptr;
 
 RequestMapper::RequestMapper(QObject* parent)
-    :HttpRequestHandler(parent)
+	:HttpRequestHandler(parent)
 {
 
 }
@@ -26,50 +27,54 @@ RequestMapper::~RequestMapper()
 
 void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 {
-    QByteArray path = request.getPath();
+	QByteArray path = request.getPath();
 
 	if (path.startsWith("/css") || path.startsWith("/fonts")
-            || path.startsWith("/js") || path.startsWith("/img")
-            || path.startsWith("/amcharts") || path.startsWith("/chart"))
-    {
-        staticFileController->service(request, response);
-        return;
-    }
+			|| path.startsWith("/js") || path.startsWith("/img")
+			|| path.startsWith("/amcharts") || path.startsWith("/chart"))
+	{
+		staticFileController->service(request, response);
+		return;
+	}
 
 
 	/*QByteArray sessionId = sessionStore->getSessionId(request, response);
-    if (sessionId.isEmpty() && path != "/login")
-    {
-        //qDebug("RequestMapper: redirect to login page");
-        response.redirect("/login");
-        return;
+	if (sessionId.isEmpty() && path != "/login")
+	{
+		//qDebug("RequestMapper: redirect to login page");
+		response.redirect("/login");
+		return;
 	}*/
 
-    if (path == "/")
-    {
+	if (path == "/")
+	{
 		response.redirect("/car-list");
 		return;
-    }
+	}
 	else if (path == "/login")
-    {
+	{
 		LoginController().service(request, response);
-    }
+	}
 	else if (path == "/car-list")
 	{
 		CarListController().service(request, response);
 	}
-    else if (path == "/logs")
-    {
-        LogsController().service(request, response);
-    }
-    else if (path == "/settings")
-    {
-        SettingsController().service(request, response);
-    }
-    else if (path == "/car-list/add-car")
-    {
-        AddCarController().service(request, response);
-    }
+	else if (path == "/logs")
+	{
+		LogsController().service(request, response);
+	}
+	else if (path == "/settings")
+	{
+		SettingsController().service(request, response);
+	}
+	else if (path == "/settings/change-password")
+	{
+		ChangePasswordController().service(request, response);
+	}
+	else if (path == "/car-list/add-car")
+	{
+		AddCarController().service(request, response);
+	}
 	else if (path == "/car-list/remove-car")
 	{
 		RemoveCarController().service(request, response);
@@ -78,15 +83,15 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 	{
 		EditCarController().service(request, response);
 	}
-    else if (path == "/logout")
-    {
-        HttpSession session = sessionStore->getSession(request, response);
-        sessionStore->removeSession(session);
+	else if (path == "/logout")
+	{
+		HttpSession session = sessionStore->getSession(request, response);
+		sessionStore->removeSession(session);
 
-        response.redirect("/");
-    }
-    else
-    {
-        response.setStatus(404, "Page not found");
-    }
+		response.redirect("/");
+	}
+	else
+	{
+		response.setStatus(404, "Page not found");
+	}
 }

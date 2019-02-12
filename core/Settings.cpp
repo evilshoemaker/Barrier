@@ -28,6 +28,11 @@ void Settings::setPassword(const QString &password)
 	settings_->setValue(PASSWORD_HASH, password);
 }
 
+void Settings::save()
+{
+	settings_->sync();
+}
+
 Settings::Settings() :
 	settings_(new QSettings(Variables::settingsFilePath(), QSettings::IniFormat))
 {

@@ -14,6 +14,8 @@ public:
 	QString password();
 	void setPassword(const QString &password);
 
+	void save();
+
 private:
 	Settings();
 

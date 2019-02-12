@@ -60,7 +60,7 @@ QString Database::addCar(const CarNumberInfo &car)
                                                car.apartmentNumber(),
                                                car.parkingPlace(),
                                                car.phoneNumber(),
-                                               car.phoneNumber())
+											   car.description())
 										  );
 }
 
@@ -68,9 +68,9 @@ QString Database::updateCar(const CarNumberInfo &car)
 {
 	const QString sql = QString("UPDATE cars SET"
 						  " car_number = '%1', "
-						  " surname = '%2'"
+						  " surname = '%2', "
 						  " name = '%3', "
-						  " patronymic = '%4, "
+						  " patronymic = '%4', "
 						  " apartment_number = '%5', "
 						  " parking_place = '%6', "
 						  " phone_number = '%7', "
@@ -85,7 +85,7 @@ QString Database::updateCar(const CarNumberInfo &car)
 											   car.apartmentNumber(),
 											   car.parkingPlace(),
 											   car.phoneNumber(),
-											   car.phoneNumber())
+											   car.description())
 										  .arg(car.id())
 										  );
 }

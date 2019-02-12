@@ -16,6 +16,7 @@ public:
 	EditCarController();
 	void service(HttpRequest& request, HttpResponse& response);
 	bool fillTemplateFromDb(Template &t, qlonglong id, QString &error);
+	void parseAndSave(HttpRequest &request, HttpResponse &response);
 };
 
 #endif // EDITCARCONTROLLER_H

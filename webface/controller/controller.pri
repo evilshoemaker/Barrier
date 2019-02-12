@@ -8,7 +8,8 @@ HEADERS += \
     $$PWD/LogsController.h \
     $$PWD/AddCarController.h \
     $$PWD/RemoveCarController.h \
-    $$PWD/EditCarController.h
+    $$PWD/EditCarController.h \
+    $$PWD/ChangePasswordController.h
 
 SOURCES += \
     $$PWD/IndexController.cpp \
@@ -18,4 +19,5 @@ SOURCES += \
     $$PWD/LogsController.cpp \
     $$PWD/AddCarController.cpp \
     $$PWD/RemoveCarController.cpp \
-    $$PWD/EditCarController.cpp
+    $$PWD/EditCarController.cpp \
+    $$PWD/ChangePasswordController.cpp
