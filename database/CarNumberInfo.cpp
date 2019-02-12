@@ -6,7 +6,7 @@ CarNumberInfo::CarNumberInfo(QObject *parent) :
 
 }
 
-qlonglong CarNumberInfo::id()
+qlonglong CarNumberInfo::id() const
 {
 	return id_;
 }

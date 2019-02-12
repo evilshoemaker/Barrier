@@ -27,7 +27,7 @@ void RemoveCarController::parseAndRemove(HttpRequest &request, HttpResponse &res
 	bool isSuccessTransform = false;
 	qlonglong carInfoId = request.getParameter("id").toLongLong(&isSuccessTransform);
 
-	if (isSuccessTransform)
+	if (!isSuccessTransform)
 	{
 		response.write(Util::makeJsonResult("error", tr("Отсуствует или не верный обязательный параметр")));
 		return;

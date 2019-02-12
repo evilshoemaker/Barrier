@@ -21,7 +21,11 @@ public:
 
     static QString requestAllCarList(const QString &transactionId = "");
 
+	static QString requestCar(qlonglong id);
+
     static QString addCar(const CarNumberInfo &car);
+
+	static QString updateCar(const CarNumberInfo &car);
 
 	static QString removeCar(qlonglong id);
 

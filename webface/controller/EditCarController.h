@@ -5,6 +5,8 @@
 #include "httpresponse.h"
 #include "httprequesthandler.h"
 
+#include "webface/RequestMapper.h"
+
 class EditCarController : public HttpRequestHandler
 {
 	Q_OBJECT
@@ -13,6 +15,7 @@ class EditCarController : public HttpRequestHandler
 public:
 	EditCarController();
 	void service(HttpRequest& request, HttpResponse& response);
+	bool fillTemplateFromDb(Template &t, qlonglong id, QString &error);
 };
 
 #endif // EDITCARCONTROLLER_H

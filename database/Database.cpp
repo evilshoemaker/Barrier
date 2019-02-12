@@ -22,7 +22,13 @@ void Database::emptySelect()
 QString Database::requestAllCarList(const QString &transactionId)
 {
 	QString sql = QString("SELECT * FROM cars");
-    return Database::instance()->databaseThread_->executeQuery(sql, transactionId);
+	return Database::instance()->databaseThread_->executeQuery(sql, transactionId);
+}
+
+QString Database::requestCar(qlonglong id)
+{
+	QString sql = QString("SELECT * FROM cars WHERE id = %1");
+	return Database::instance()->databaseThread_->executeQuery(sql.arg(id));
 }
 
 QString Database::addCar(const CarNumberInfo &car)
@@ -55,6 +61,32 @@ QString Database::addCar(const CarNumberInfo &car)
                                                car.parkingPlace(),
                                                car.phoneNumber(),
                                                car.phoneNumber())
+										  );
+}
+
+QString Database::updateCar(const CarNumberInfo &car)
+{
+	const QString sql = QString("UPDATE cars SET"
+						  " car_number = '%1', "
+						  " surname = '%2'"
+						  " name = '%3', "
+						  " patronymic = '%4, "
+						  " apartment_number = '%5', "
+						  " parking_place = '%6', "
+						  " phone_number = '%7', "
+						  " description = '%8' "
+						  " WHERE id = %9");
+	return Database::instance()->
+			databaseThread_->executeQuery(sql
+										  .arg(car.carNumber(),
+											   car.ownerSurname(),
+											   car.ownerName(),
+											   car.ownerPatronymic(),
+											   car.apartmentNumber(),
+											   car.parkingPlace(),
+											   car.phoneNumber(),
+											   car.phoneNumber())
+										  .arg(car.id())
 										  );
 }
 

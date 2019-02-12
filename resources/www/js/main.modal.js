@@ -52,6 +52,60 @@ function saveNewCar()
 	return false;
 }
 
+function showEditCarModalDialog(id)
+{
+	httpGetAsync("/car-list/edit-car?id=" + id, function(responseText) {
+		document.getElementById("modal_div").innerHTML = responseText;
+
+		document.getElementById("modal_close_button").addEventListener("click", hideModal);
+		document.getElementById("edit_car_modal_cancel_button").addEventListener("click", hideModal);
+		document.getElementById("edit_car_form").addEventListener("submit", saveNewCar);
+
+		setTimeout(function run() {
+			document.getElementsByClassName("modal fade")[0].classList.toggle("show");
+			document.getElementsByClassName("modal-backdrop fade")[0].classList.toggle("show");
+			document.getElementsByClassName("app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden")[0].classList.toggle("modal-open");
+		}, 200);
+	});	
+}
+
+function saveEditedCar()
+{
+	event.preventDefault();
+
+	if (document.getElementById("car_number").value == "") {
+		return;
+	}
+
+	if (document.getElementById("owner_surname").value == "") {
+		return;
+	}
+
+	if (document.getElementById("owner_name").value == "") {
+		return;
+	}
+
+	var tth = this;
+
+	setTimeout(function run() {
+		httpPostAsync("/car-list/edit-car", new FormData(tth), function(responseText) {
+			var result = JSON.parse(responseText);
+
+			if (result.result === "success") {
+				showModalInfoDialog("Информация", "Запись успешно обновлена");
+				location.reload();
+			}
+			else if (result.result == "error")
+			{
+				showModalInfoDialog("Ошибка", result.message)
+			}
+		});
+	}, 200);
+
+	hideModal();
+	return false;
+}
+
 function showModalInfoDialog(title, text)
 {
 	document.getElementById("modal_div").innerHTML = getModalInfoDialogHtml(title, text);
@@ -142,4 +196,52 @@ function getСonfirmRemoveCarModalDialog(id)
 			+ '</div>'
 			+ '<div class="modal-backdrop fade"></div>'
 		+ '</div>';
+}
+
+function removeCar()
+{
+	event.preventDefault();
+	
+	var p = this.href.split('?');
+    var action = p[0];
+	var params = p[1].split('&');
+	
+	var formData = new FormData();
+
+	for (var i in params) {
+        var tmp= params[i].split('=');
+        var key = tmp[0], value = tmp[1];
+        formData.append(key, value);
+	}
+
+	hideModal();
+
+	setTimeout(function run() {
+		httpPostAsync(action, formData, function(responseText) {
+			var result = JSON.parse(responseText);
+
+			if (result.result === "success") {
+				showModalInfoDialog("Информация", "Запись успешно добавлена");
+				location.reload();
+			}
+			else if (result.result == "error")
+			{
+				showModalInfoDialog("Ошибка", result.message)
+			}
+		});
+	}, 300);
+
+    return false;
+}
+
+function editCar()
+{
+	try {
+		showEditCarModalDialog(event.target.value)
+	}
+	catch (err) {
+		console.log(err)
+	}
+
+	return false;
 }

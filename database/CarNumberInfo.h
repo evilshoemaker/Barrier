@@ -20,7 +20,7 @@ class CarNumberInfo : public QObject
 public:
 	explicit CarNumberInfo(QObject *parent = nullptr);
 
-	qlonglong id();
+	qlonglong id() const;
 	void setId(qlonglong id);
 
     QString carNumber() const;
