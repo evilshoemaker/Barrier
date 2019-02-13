@@ -98,19 +98,39 @@ Item {
 
 
     KeyEventHandler {
-        enabled: page.state == 'inputState'
+        //enabled: page.state == 'inputState'
 
-        onNextDigit: { 
-            carNumber.number += digit
+        onNextDigit: {
+            if (page.state == 'inputState') {
+                carNumber.number += digit
 
-            if (carNumber.number.length == 3)
+                if (carNumber.number.length == 3)
+                {
+                    search()
+                }
+            }
+            else if (page.state == 'foundState')
             {
-                search()
+                if (carNumberModel.count <= parseInt(digit, 10))
+                {
+                    console.log(digit)
+                }
             }
         }
 
         onDeleteDigit: {
-            carNumber.number = carNumber.number.substring(0, carNumber.number.length - 1)
+            if (page.state == 'inputState') {
+                carNumber.number = carNumber.number.substring(0, carNumber.number.length - 1)
+            }
+        }
+
+        onEscaped: {
+            if (page.state == 'inputState') {
+                carNumber.number = "";
+            }
+            else {
+                page.state = "inputState";
+            }
         }
     }
 

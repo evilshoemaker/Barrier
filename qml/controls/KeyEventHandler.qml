@@ -9,6 +9,7 @@ Item {
 
     signal nextDigit(string digit)
     signal deleteDigit()
+    signal escaped()
 
 
     Keys.onPressed: {
@@ -32,7 +33,11 @@ Item {
         if (event.key === Qt.Key_Backspace ||
                 event.key === Qt.Key_Delete)
         {
-            deleteDigit()
+            deleteDigit();
+        }
+
+        if (event.key === Qt.Key_Escape) {
+            escaped();
         }
     }
 }
