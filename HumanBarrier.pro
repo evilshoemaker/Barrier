@@ -20,3 +20,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 include(database/database.pri)
 include(core/core.pri)
 include(webface/webface.pri)
+include(gpio/gpio.pri)
