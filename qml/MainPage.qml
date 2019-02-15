@@ -77,25 +77,114 @@ Item {
             }
         }
 
-        ListView {
-            id: carNumberListView
-            model: carNumberModel
-            spacing: 10
+        Item {
+            id: carNumberListViewItem
+
+            visible: false
 
             Layout.topMargin: 24
             Layout.leftMargin: 45
             Layout.rightMargin: 45
 
-            delegate: CarNumber {
-                x: (carNumberListView.width / 2) - (width / 2)
-                number: carNumber
-            }
-
             Layout.fillHeight: true
             Layout.fillWidth: true
+
+            ColumnLayout {
+                anchors.fill: parent
+
+                Text {
+                    Layout.fillWidth: true
+
+                    Layout.topMargin: 24
+                    Layout.leftMargin: 45
+                    Layout.rightMargin: 45
+
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+
+                    font.pixelSize: 24
+                    font.family: openSansRegular.name
+                    //font.capitalization: Font.AllUppercase
+
+                    wrapMode: Text.WordWrap
+
+                    text: "Нажмите на клавиатуре от 1-9 для открытия шлагбаума. Отмена Esc"
+                }
+
+                ListView {
+                    id: carNumberListView
+
+                    model: carNumberModel
+                    spacing: 10
+
+                    delegate: RowLayout {
+
+                        x: (carNumberListView.width / 2) - (width / 2)
+
+                        Rectangle {
+                            Layout.fillHeight: true
+
+                            Layout.preferredWidth: 60
+
+                            border.width: 2
+                            border.color: "#000"
+
+                            radius: 5
+
+                            Text {
+                                anchors.centerIn: parent
+
+                                horizontalAlignment: Qt.AlignHCenter
+                                verticalAlignment: Qt.AlignVCenter
+
+                                font.pixelSize: 32
+                                font.family: openSansRegular.name
+
+                                text: (index + 1)
+                            }
+
+                        }
+
+                        CarNumber {
+                            Layout.leftMargin: 10
+                            number: carNumber
+                        }
+                    }
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    Layout.topMargin: 10
+                }
+            }
+        }
+
+        Text {
+            id: openningBarrierText
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Layout.topMargin: 24
+            Layout.leftMargin: 45
+            Layout.rightMargin: 45
+
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+
+            font.pixelSize: 36
+            font.family: openSansRegular.name
+            font.capitalization: Font.AllUppercase
+
+            visible: false
+
+            color: "green"
+
+            wrapMode: Text.WordWrap
+
+            text: "Открытие шлагбаума"
         }
     }
-
 
     KeyEventHandler {
         //enabled: page.state == 'inputState'
@@ -111,9 +200,16 @@ Item {
             }
             else if (page.state == 'foundState')
             {
-                if (carNumberModel.count <= parseInt(digit, 10))
+                var index = parseInt(digit, 10) - 1;
+
+                if (carNumberModel.count > index && index > -1)
                 {
-                    console.log(digit)
+                    page.state = "openningBarrier";
+
+                    var carNumberInfo  = carNumberModel.at(index);
+                    carNumber.fullNumber = carNumberInfo.carNumber;
+                    databaseLogger.openBarrier(carNumberInfo)
+                    console.log("open " + index + " " + carNumberInfo.carNumber);
                 }
             }
         }
@@ -169,11 +265,6 @@ Item {
             name: "searchState"
 
             PropertyChanges {
-                target: carNumberListView
-                visible: false
-            }
-
-            PropertyChanges {
                 target: notFoundText
                 visible: false
             }
@@ -186,8 +277,9 @@ Item {
 
         State {
             name: "foundState"
+
             PropertyChanges {
-                target: carNumberListView
+                target: carNumberListViewItem
                 visible: true
             }
 
@@ -204,10 +296,6 @@ Item {
 
         State {
             name: "notFoundState"
-            PropertyChanges {
-                target: carNumberListView
-                visible: false
-            }
 
             PropertyChanges {
                 target: notFoundText
@@ -222,10 +310,6 @@ Item {
 
         State {
             name: "inputState"
-            PropertyChanges {
-                target: carNumberListView
-                visible: false
-            }
 
             PropertyChanges {
                 target: notFoundText
@@ -240,7 +324,33 @@ Item {
             StateChangeScript {
                 script: {
                     carNumber.number = ""
+                    carNumber.fullNumber = ""
                 }
+            }
+        },
+
+        State {
+            name: "openningBarrier"
+
+            PropertyChanges {
+                target: notFoundText
+                visible: false
+            }
+
+            PropertyChanges {
+                target: inputHelpText
+                visible: false
+            }
+
+            StateChangeScript {
+                script: {
+                    resetTimer.start();
+                }
+            }
+
+            PropertyChanges {
+                target: openningBarrierText
+                visible: true
             }
         }
     ]

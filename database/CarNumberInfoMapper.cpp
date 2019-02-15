@@ -54,5 +54,38 @@ QList<CarNumberInfo *> CarNumberInfoMapper::getByCarNumber(const QString &number
         }
     }
 
-    return results;
+	return results;
+}
+
+CarNumberInfo *CarNumberInfoMapper::getById(qlonglong id, QObject *parent)
+{
+	const QString sql = QString("SELECT * FROM cars"
+								" WHERE id = %1");
+
+	QString transactionId = Database::executeQuery(sql.arg(id));
+
+	SyncQueryHandler syncQueryHandler;
+	if (!syncQueryHandler.waitResult(transactionId))
+	{
+		return nullptr;
+	}
+
+	QList<QSqlRecord> records = syncQueryHandler.records();
+	if (records.isEmpty())
+		return nullptr;
+
+	const QSqlRecord &record = records.first();
+
+	CarNumberInfo *info = new CarNumberInfo(parent);
+
+	info->setCarNumber(record.value("car_number").toString());
+	info->setOwnerName(record.value("name").toString());
+	info->setOwnerSurname(record.value("surname").toString());
+	info->setOwnerPatronymic(record.value("patronymic").toString());
+	info->setApartmentNumber(record.value("apartment_number").toString());
+	info->setParkingPlace(record.value("parking_place").toString());
+	info->setPhoneNumber(record.value("phone_number").toString());
+	info->setDescription(record.value("description").toString());
+
+	return info;
 }

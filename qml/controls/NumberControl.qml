@@ -3,10 +3,13 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+import app 1.0
+
 Item {
     id: control
 
     property string number: ""
+    property string fullNumber: ""
 
     Rectangle {
         anchors.fill: parent
@@ -22,12 +25,6 @@ Item {
             anchors.fill: parent
 
             RowLayout {
-                //anchors.left: parent.left
-                //anchors.right: parent.right
-                //anchors.verticalCenter: parent.verticalCenter
-                //anchors.leftMargin: 24
-                //anchors.rightMargin: 24
-
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 36
@@ -42,9 +39,9 @@ Item {
                     font.pixelSize: 42
                     font.family: openSansRegular.name
 
-                    opacity: 0.5
+                    opacity: carNumberParser.char1.length > 0 ? 1 : 0.5
 
-                    text: "A"
+                    text: carNumberParser.char1.length > 0 ? carNumberParser.char1 : "A"
                 }
 
                 Text {
@@ -63,26 +60,15 @@ Item {
                 }
 
                 Text {
-                    Layout.alignment: Qt.AlignBottom
-
-                    font.pixelSize: 42
-                    font.family: openSansRegular.name
-
-                    opacity: 0.5
-
-                    text: "A"
-                }
-
-                Text {
                     Layout.leftMargin: 10
                     Layout.alignment: Qt.AlignBottom
 
                     font.pixelSize: 42
                     font.family: openSansRegular.name
 
-                    opacity: 0.5
+                    opacity: carNumberParser.char2.length > 0 ? 1 : 0.5
 
-                    text: "A"
+                    text: carNumberParser.char2.length > 0 ? carNumberParser.char2 : "AA"
                 }
 
             }
@@ -113,9 +99,9 @@ Item {
                         font.pixelSize: 38
                         font.family: openSansRegular.name
 
-                        opacity: 0.5
+                        opacity: carNumberParser.region.length > 0 ? 1 : 0.5
 
-                        text: "000"
+                        text: carNumberParser.region.length > 0 ? carNumberParser.region : "000"
                     }
 
                     RowLayout {
@@ -147,5 +133,10 @@ Item {
                 }
             }
         }
+    }
+
+    CarNumberParser {
+        id: carNumberParser
+        number: control.fullNumber
     }
 }

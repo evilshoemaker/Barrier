@@ -63,7 +63,15 @@ QHash<int, QByteArray> CarNumberInfoModel::roleNames() const
     roles[PhoneNumberRole] = "phoneNumber";
     roles[DescriptionRole] = "description";
 
-    return roles;
+	return roles;
+}
+
+CarNumberInfo *CarNumberInfoModel::at(int index)
+{
+	if (index < 0 || index > data_.size())
+		return nullptr;
+
+	return data_.at(index);
 }
 
 void CarNumberInfoModel::search(const QString &number)

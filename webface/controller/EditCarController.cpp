@@ -3,6 +3,7 @@
 #include "database/Database.h"
 #include "database/SyncQueryHandler.h"
 #include "database/CarNumberInfo.h"
+#include "database/DatabaseLogger.h"
 
 #include "core/Util.h"
 
@@ -135,6 +136,8 @@ void EditCarController::parseAndSave(HttpRequest &request, HttpResponse &respons
 		response.write(Util::makeJsonResult("error", "Ошибка обновления записи"));
 		return;
 	}
+
+	DatabaseLogger::updateCar(&info);
 
 	response.write(Util::makeJsonResult("success", ""));
 }

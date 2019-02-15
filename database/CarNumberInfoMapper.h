@@ -9,6 +9,7 @@ public:
     CarNumberInfoMapper();
 
     QList<CarNumberInfo *> getByCarNumber(const QString &number, QObject *parent);
+	CarNumberInfo *getById(qlonglong id, QObject *parent);
 };
 
 #endif // CARNUMBERINFOMAPPER_H

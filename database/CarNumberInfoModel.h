@@ -33,6 +33,8 @@ public:
 
     QHash<int, QByteArray> roleNames() const override;
 
+	Q_INVOKABLE CarNumberInfo *at(int index);
+
     Q_INVOKABLE void search(const QString &number);
 
     void clear();

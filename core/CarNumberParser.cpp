@@ -20,6 +20,15 @@ void CarNumberParser::setNumber(const QString &number)
     number_ = number;
     emit numberChanged();
 
+	if (number.isEmpty())
+	{
+		setChar1("");
+		setDigital("");
+		setChar2("");
+		setRegion("");
+		return;
+	}
+
 	QRegularExpression re("^(?<char1>[A-ZА-Я])(?<number>\\d\\d\\d)(?<char2>[A-ZА-Я][A-ZА-Я])(?<region>\\d\\d?[\\d])$");
     QRegularExpressionMatch match = re.match(number_);
     if (match.hasMatch()) {

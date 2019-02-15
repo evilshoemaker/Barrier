@@ -3,6 +3,7 @@
 #include "database/Database.h"
 #include "database/SyncQueryHandler.h"
 #include "database/CarNumberInfo.h"
+#include "database/DatabaseLogger.h"
 
 #include "webface/RequestMapper.h"
 
@@ -77,6 +78,8 @@ void AddCarController::parseAndSave(HttpRequest &request, HttpResponse &response
         writeResult(response, "error", "Ошибка добавления записи");
         return;
     }
+
+	DatabaseLogger::addedNewCar(&info);
 
     writeResult(response, "success", "");
 }

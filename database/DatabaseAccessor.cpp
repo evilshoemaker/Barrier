@@ -96,15 +96,10 @@ void DatabaseAccessor::createLogsTable()
 
     QStringList queryList;
     queryList.append("CREATE TABLE logs ("
-                     " id INTEGER NOT NULL PRIMARY KEY,"
-                     " car_number TEXT NOT NULL,"
-                     " name TEXT NOT NULL,"
-                     " surname TEXT NOT NULL,"
-                     " patronymic TEXT NOT NULL,"
-					 " apartment_number TEXT DEFAULT NULL,"
-					 " parking_place TEXT DEFAULT NULL,"
-					 " phone_number TEXT DEFAULT NULL,"
-                     " description TEXT DEFAULT '');");
+					 " id INTEGER NOT NULL PRIMARY KEY,"
+					 " date_time TEXT NOT NULL, "
+					 " action TEXT NOT NULL, "
+					 " value TEXT NOT NULL);");
 
     QSqlQuery q(database_);
 
