@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSqlRecord>
+#include <QDateTime>
 
 #include "CarNumberInfo.h"
 
@@ -28,6 +29,10 @@ public:
 	static QString updateCar(const CarNumberInfo &car);
 
 	static QString removeCar(qlonglong id);
+
+	static QString requestAllLogs();
+
+	static QString requestLogForDate(const QDateTime &beginDate, const QDateTime &endDate);
 
 signals:
 	void results(const QList<QSqlRecord> &recordList, const QString &transactionId);

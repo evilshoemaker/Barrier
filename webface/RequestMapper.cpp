@@ -59,7 +59,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 	{
 		CarListController().service(request, response);
 	}
-	else if (path == "/logs")
+	else if (path.startsWith("/logs"))
 	{
 		LogsController().service(request, response);
 	}

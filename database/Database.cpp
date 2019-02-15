@@ -97,6 +97,20 @@ QString Database::removeCar(qlonglong id)
 			databaseThread_->executeQuery(sql.arg(id));
 }
 
+QString Database::requestAllLogs()
+{
+	const QString sql = QString("SELECT * FROM logs ORDER BY date_time DESC");
+	return Database::instance()->
+			databaseThread_->executeQuery(sql);
+}
+
+QString Database::requestLogForDate(const QDateTime &beginDate, const QDateTime &endDate)
+{
+	const QString sql = QString("SELECT * FROM logs ORDER BY date_time DESC");
+	return Database::instance()->
+			databaseThread_->executeQuery(sql);
+}
+
 Database::Database(QObject *parent) :
 	QObject(parent),
 	databaseThread_(new DatabaseThread(this))
