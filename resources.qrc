@@ -56,5 +56,6 @@
         <file>resources/www/css/fonts/fontawesome-webfont.b06871f281fee6b241d60582ae9369b9.ttf</file>
         <file>resources/www/css/fonts/fontawesome-webfont.fee66e712a8a08eef5805a46892932ad.woff</file>
         <file>qml/controls/CarNumber.qml</file>
+        <file>resources/www/settings.html</file>
     </qresource>
 </RCC>
