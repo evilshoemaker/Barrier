@@ -1,5 +1,8 @@
 QT += quick sql
 CONFIG += c++11
+CONFIG += qtquickcompiler
+
+QTQUICK_COMPILER_SKIPPED_RESOURCES += bundle_only.qrc
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
