@@ -23,6 +23,8 @@ Item {
             NumberControl {
                 id: carNumber
 
+                scale: 1.5
+
                 Layout.preferredWidth: 400
                 Layout.preferredHeight: 90
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -34,14 +36,14 @@ Item {
 
             Text {
                 id: inputHelpText
-                Layout.topMargin: 24
+                Layout.topMargin: 34
                 Layout.fillWidth: true
                 Layout.leftMargin: 45
                 Layout.rightMargin: 45
 
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pixelSize: 36
+                font.pixelSize: 48
                 font.family: openSansRegular.name
                 font.capitalization: Font.AllUppercase
 
@@ -49,7 +51,7 @@ Item {
 
                 wrapMode: Text.WordWrap
 
-                text: "Введите 3 цифры номера атомобиля"
+                text: "Введите 3 цифры номера автомобиля"
             }
 
             Text {
@@ -61,7 +63,7 @@ Item {
 
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pixelSize: 36
+                font.pixelSize: 48
                 font.family: openSansRegular.name
                 font.capitalization: Font.AllUppercase
 
@@ -102,7 +104,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
 
-                    font.pixelSize: 24
+                    font.pixelSize: 36
                     font.family: openSansRegular.name
                     //font.capitalization: Font.AllUppercase
 
@@ -124,12 +126,14 @@ Item {
                         Rectangle {
                             Layout.fillHeight: true
 
-                            Layout.preferredWidth: 60
+                            Layout.preferredWidth: 70
 
                             border.width: 2
                             border.color: "#000"
 
                             radius: 5
+
+                            scale: 1.5
 
                             Text {
                                 anchors.centerIn: parent
@@ -137,7 +141,7 @@ Item {
                                 horizontalAlignment: Qt.AlignHCenter
                                 verticalAlignment: Qt.AlignVCenter
 
-                                font.pixelSize: 32
+                                font.pixelSize: 36
                                 font.family: openSansRegular.name
 
                                 text: (index + 1)
@@ -148,6 +152,7 @@ Item {
                         CarNumber {
                             Layout.leftMargin: 10
                             number: carNumber
+                            scale: 1.5
                         }
                     }
 

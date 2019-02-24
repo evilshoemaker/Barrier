@@ -19,9 +19,14 @@ void DatabaseLogger::addedNewCar(CarNumberInfo *info)
 		return;
 
 	QJsonObject jsonObj;
+    jsonObj["id"] = info->id();
 	jsonObj["number"] = info->carNumber();
 	jsonObj["surname"] = info->ownerSurname();
 	jsonObj["name"] = info->ownerName();
+    jsonObj["patronymic"] = info->ownerPatronymic();
+    jsonObj["apartment_number"] = info->apartmentNumber();
+    jsonObj["parking_place"] = info->parkingPlace();
+    jsonObj["phone_number"] = info->phoneNumber();
 
 	QJsonDocument jsonDoc(jsonObj);
 
@@ -37,9 +42,14 @@ void DatabaseLogger::removeCar(CarNumberInfo *info)
 		return;
 
 	QJsonObject jsonObj;
-	jsonObj["number"] = info->carNumber();
-	jsonObj["surname"] = info->ownerSurname();
-	jsonObj["name"] = info->ownerName();
+    jsonObj["id"] = info->id();
+    jsonObj["number"] = info->carNumber();
+    jsonObj["surname"] = info->ownerSurname();
+    jsonObj["name"] = info->ownerName();
+    jsonObj["patronymic"] = info->ownerPatronymic();
+    jsonObj["apartment_number"] = info->apartmentNumber();
+    jsonObj["parking_place"] = info->parkingPlace();
+    jsonObj["phone_number"] = info->phoneNumber();
 
 	QJsonDocument jsonDoc(jsonObj);
 
@@ -55,9 +65,14 @@ void DatabaseLogger::updateCar(CarNumberInfo *info)
 		return;
 
 	QJsonObject jsonObj;
-	jsonObj["number"] = info->carNumber();
-	jsonObj["surname"] = info->ownerSurname();
-	jsonObj["name"] = info->ownerName();
+    jsonObj["id"] = info->id();
+    jsonObj["number"] = info->carNumber();
+    jsonObj["surname"] = info->ownerSurname();
+    jsonObj["name"] = info->ownerName();
+    jsonObj["patronymic"] = info->ownerPatronymic();
+    jsonObj["apartment_number"] = info->apartmentNumber();
+    jsonObj["parking_place"] = info->parkingPlace();
+    jsonObj["phone_number"] = info->phoneNumber();
 
 	QJsonDocument jsonDoc(jsonObj);
 
@@ -73,9 +88,14 @@ void DatabaseLogger::openBarrier(CarNumberInfo *info)
 		return;
 
 	QJsonObject jsonObj;
-	jsonObj["number"] = info->carNumber();
-	jsonObj["surname"] = info->ownerSurname();
-	jsonObj["name"] = info->ownerName();
+    jsonObj["id"] = info->id();
+    jsonObj["number"] = info->carNumber();
+    jsonObj["surname"] = info->ownerSurname();
+    jsonObj["name"] = info->ownerName();
+    jsonObj["patronymic"] = info->ownerPatronymic();
+    jsonObj["apartment_number"] = info->apartmentNumber();
+    jsonObj["parking_place"] = info->parkingPlace();
+    jsonObj["phone_number"] = info->phoneNumber();
 
 	QJsonDocument jsonDoc(jsonObj);
 

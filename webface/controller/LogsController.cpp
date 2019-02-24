@@ -1,6 +1,8 @@
 #include "LogsController.h"
 
 #include <QDateTime>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #include "database/Database.h"
 #include "database/SyncQueryHandler.h"
@@ -66,7 +68,19 @@ void LogsController::service(HttpRequest &request, HttpResponse &response)
 				tableBody.append(QString("<td>%1</td>").arg("Открыт шлагбаум"));
 			}
 
-			tableBody.append(QString("<td>%1</td>").arg(record.value("value").toString()));
+            QString jsonStr = record.value("value").toString();
+            QJsonDocument jDoc = QJsonDocument::fromJson(jsonStr.toUtf8());
+            QJsonObject json = jDoc.object();
+
+            QString val = QString("%1, %2 %3 %4, кв. %5")
+                    .arg(json["number"].toString(),
+                    json["surname"].toString(),
+                    json["name"].toString(),
+                    json["patronymic"].toString(),
+                    json["apartment_number"].toString());
+
+
+            tableBody.append(QString("<td>%1</td>").arg(val));
 
 			tableBody.append("</tr>");
 		}
