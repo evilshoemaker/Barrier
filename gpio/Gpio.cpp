@@ -7,6 +7,11 @@ Gpio::Gpio(QObject *parent) : QObject(parent)
 
 }
 
+Gpio::~Gpio()
+{
+
+}
+
 void Gpio::init(int pin)
 {
     QProcess::execute(QString("gpio mode %1 out").arg(pin));
