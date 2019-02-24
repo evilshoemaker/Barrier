@@ -8,6 +8,7 @@ class Gpio : public QObject
     Q_OBJECT
 public:
     explicit Gpio(QObject *parent = nullptr);
+    ~Gpio();
 
     Q_INVOKABLE void init(int pin);
 
