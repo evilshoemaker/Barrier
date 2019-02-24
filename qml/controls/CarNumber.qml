@@ -7,8 +7,8 @@ import app 1.0
 Item {
     id: control
 
-    width: 300
-    height: 60
+    width: 350
+    height: 90
 
     property string number: ""
 
@@ -41,7 +41,7 @@ Item {
 
                     Layout.alignment: Qt.AlignBottom
 
-                    font.pixelSize: 36
+                    font.pixelSize: 42
                     font.family: openSansRegular.name
 
                     text: carNumberParser.char1
@@ -54,7 +54,7 @@ Item {
 
                     horizontalAlignment: Text.AlignHCenter
 
-                    font.pixelSize: 42
+                    font.pixelSize: 52
                     font.family: openSansRegular.name
 
                     //opacity: control.number.length > 0 ? 1 : 0.5
@@ -66,7 +66,7 @@ Item {
                     Layout.leftMargin: 10
                     Layout.alignment: Qt.AlignBottom
 
-                    font.pixelSize: 36
+                    font.pixelSize: 42
                     font.family: openSansRegular.name
 
                     text: carNumberParser.char2
@@ -80,7 +80,7 @@ Item {
 
             Item {
                 Layout.fillHeight: true
-                Layout.preferredWidth: 80
+                Layout.preferredWidth: 100
 
                 Rectangle {
                     anchors.left: parent.left
@@ -99,9 +99,9 @@ Item {
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.fillHeight: true
-                        Layout.topMargin: 2
+                        Layout.topMargin: 10
 
-                        font.pixelSize: 26
+                        font.pixelSize: 28
                         font.family: openSansRegular.name
 
                         //opacity: 0.5
@@ -111,13 +111,13 @@ Item {
 
                     RowLayout {
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.bottomMargin: 5
+                        Layout.bottomMargin: 10
 
                         Text {
                             Layout.alignment: Qt.AlignBottom
                             verticalAlignment: Text.AlignBottom
 
-                            font.pixelSize: 14
+                            font.pixelSize: 18
                             font.family: openSansRegular.name
 
                             text: "RUS"

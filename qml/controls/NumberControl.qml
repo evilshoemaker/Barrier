@@ -32,11 +32,15 @@ Item {
 
                 spacing: 0
 
+                Item {
+                    Layout.fillWidth: true
+                }
+
                 Text {
 
                     Layout.alignment: Qt.AlignBottom
 
-                    font.pixelSize: 42
+                    font.pixelSize: 68
                     font.family: openSansRegular.name
 
                     opacity: carNumberParser.char1.length > 0 ? 1 : 0.5
@@ -45,13 +49,15 @@ Item {
                 }
 
                 Text {
-
-                    Layout.fillWidth: true
+                    //Layout.fillWidth: true
                     Layout.alignment: Qt.AlignBottom
+                    Layout.leftMargin: 25
+                    Layout.rightMargin: 25
+
 
                     horizontalAlignment: Text.AlignHCenter
 
-                    font.pixelSize: 52
+                    font.pixelSize: 72
                     font.family: openSansRegular.name
 
                     opacity: control.number.length > 0 ? 1 : 0.5
@@ -60,10 +66,10 @@ Item {
                 }
 
                 Text {
-                    Layout.leftMargin: 10
+                    //Layout.leftMargin: 10
                     Layout.alignment: Qt.AlignBottom
 
-                    font.pixelSize: 42
+                    font.pixelSize: 68
                     font.family: openSansRegular.name
 
                     opacity: carNumberParser.char2.length > 0 ? 1 : 0.5
@@ -71,11 +77,15 @@ Item {
                     text: carNumberParser.char2.length > 0 ? carNumberParser.char2 : "AA"
                 }
 
+                Item {
+                    Layout.fillWidth: true
+                }
+
             }
 
             Item {
                 Layout.fillHeight: true
-                Layout.preferredWidth: 100
+                Layout.preferredWidth: 150
 
                 Rectangle {
                     anchors.left: parent.left
@@ -94,9 +104,9 @@ Item {
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.fillHeight: true
-                        Layout.topMargin: 5
+                        Layout.topMargin: 10
 
-                        font.pixelSize: 38
+                        font.pixelSize: 48
                         font.family: openSansRegular.name
 
                         opacity: carNumberParser.region.length > 0 ? 1 : 0.5
@@ -106,21 +116,21 @@ Item {
 
                     RowLayout {
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.bottomMargin: 10
+                        Layout.bottomMargin: 15
 
                         Text {
                             Layout.alignment: Qt.AlignBottom
                             verticalAlignment: Text.AlignBottom
 
-                            font.pixelSize: 18
+                            font.pixelSize: 22
                             font.family: openSansRegular.name
 
                             text: "RUS"
                         }
 
                         Image {
-                            Layout.preferredHeight: 20
-                            Layout.preferredWidth: 30
+                            Layout.preferredHeight: 22
+                            Layout.preferredWidth: 35
 
                             //Layout.alignment: Qt.AlignBottom
 

@@ -23,10 +23,10 @@ Item {
             NumberControl {
                 id: carNumber
 
-                scale: 1.5
+                //scale: 1.5
 
-                Layout.preferredWidth: 400
-                Layout.preferredHeight: 90
+                Layout.preferredWidth: 600
+                Layout.preferredHeight: 120
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
@@ -117,7 +117,7 @@ Item {
                     id: carNumberListView
 
                     model: carNumberModel
-                    spacing: 10
+                    spacing: 20
 
                     delegate: RowLayout {
 
@@ -126,14 +126,14 @@ Item {
                         Rectangle {
                             Layout.fillHeight: true
 
-                            Layout.preferredWidth: 70
+                            Layout.preferredWidth: 100
 
                             border.width: 2
                             border.color: "#000"
 
                             radius: 5
 
-                            scale: 1.5
+                            //scale: 1.5
 
                             Text {
                                 anchors.centerIn: parent
@@ -141,7 +141,7 @@ Item {
                                 horizontalAlignment: Qt.AlignHCenter
                                 verticalAlignment: Qt.AlignVCenter
 
-                                font.pixelSize: 36
+                                font.pixelSize: 48
                                 font.family: openSansRegular.name
 
                                 text: (index + 1)
@@ -150,9 +150,9 @@ Item {
                         }
 
                         CarNumber {
-                            Layout.leftMargin: 10
+                            Layout.leftMargin: 20
                             number: carNumber
-                            scale: 1.5
+                            //scale: 1.5
                         }
                     }
 
