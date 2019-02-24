@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QSqlRecord>
 
+#include "gpio/Gpio.h"
+
 #include "core/Variables.h"
 #include "core/CarNumberParser.h"
 #include "webface/WebFace.h"
@@ -138,6 +140,7 @@ void qmlRegisterTypes()
     qmlRegisterType<CarNumberInfoModel>("app", 1, 0, "CarNumberInfoModel");
 	qmlRegisterType<CarNumberInfo>("app", 1, 0, "CarNumberInfo");
     qmlRegisterType<CarNumberParser>("app", 1, 0, "CarNumberParser");
+    qmlRegisterType<Gpio>("app", 1, 0, "Gpio");
 }
 
 int main(int argc, char *argv[])

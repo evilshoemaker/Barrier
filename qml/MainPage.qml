@@ -36,7 +36,7 @@ Item {
 
             Text {
                 id: inputHelpText
-                Layout.topMargin: 34
+                Layout.topMargin: 38
                 Layout.fillWidth: true
                 Layout.leftMargin: 45
                 Layout.rightMargin: 45
@@ -215,6 +215,7 @@ Item {
                     carNumber.fullNumber = carNumberInfo.carNumber;
                     databaseLogger.openBarrier(carNumberInfo)
                     console.log("open " + index + " " + carNumberInfo.carNumber);
+                    gpioResetTimer.start();
                 }
             }
         }
@@ -262,6 +263,30 @@ Item {
 
         onTriggered: {
             page.state = "inputState"
+        }
+    }
+
+    Timer {
+        id: gpioResetTimer
+        repeat: false
+        interval: 1500
+
+        onRunningChanged: {
+            if (gpioResetTimer.running)
+                gpio.digitalWrite(14, 0);
+        }
+
+        onTriggered: {
+            gpio.digitalWrite(14, 1);
+        }
+    }
+
+    Gpio {
+        id: gpio
+
+        Component.onCompleted: {
+            gpio.init(14);
+            gpio.digitalWrite(14, 1);
         }
     }
 

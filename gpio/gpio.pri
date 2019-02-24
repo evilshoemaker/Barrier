@@ -1,3 +1,5 @@
-HEADERS +=
+HEADERS += \
+    $$PWD/Gpio.h
 
-SOURCES +=
+SOURCES += \
+    $$PWD/Gpio.cpp
