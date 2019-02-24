@@ -8,8 +8,6 @@ ApplicationWindow {
     height: 1024
     title: qsTr("Stack")
 
-
-
     FontLoader { id: openSansRegular; source: "qrc:/fonts/OpenSans-Regular.ttf" }
     FontLoader { id: openSansBold; source: "qrc:/fonts/OpenSans-Bold.ttf" }
     FontLoader { id: robotoSlabRegular; source: "qrc:/fonts/robotoslab-regular.ttf" }
