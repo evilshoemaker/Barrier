@@ -37,14 +37,15 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 		return;
 	}
 
-
-	/*QByteArray sessionId = sessionStore->getSessionId(request, response);
+#ifdef QT_NO_DEBUG
+	QByteArray sessionId = sessionStore->getSessionId(request, response);
 	if (sessionId.isEmpty() && path != "/login")
 	{
 		//qDebug("RequestMapper: redirect to login page");
 		response.redirect("/login");
 		return;
-	}*/
+	}
+#endif
 
 	if (path == "/")
 	{

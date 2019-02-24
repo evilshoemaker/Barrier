@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QScreen>
 
 #include <QFile>
 #include <QSqlRecord>
@@ -153,7 +154,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+	QGuiApplication app(argc, argv);
 
 	Database::emptySelect();
 

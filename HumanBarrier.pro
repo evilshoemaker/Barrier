@@ -1,12 +1,16 @@
 QT += quick sql
 CONFIG += c++11
+CONFIG += qtquickcompiler
+
+QTQUICK_COMPILER_SKIPPED_RESOURCES += www.qrc
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp
 
-RESOURCES += resources.qrc
+RESOURCES += resources.qrc \
+    www.qrc
 
 QML_IMPORT_PATH =
 

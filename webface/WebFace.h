@@ -14,13 +14,13 @@ private:
 #ifndef QT_NO_DEBUG
 
 #ifdef _WIN32
-    const QString SETTINGS_FILE = ":/resources/http_server_debug_win_config.ini";
+	const QString SETTINGS_FILE = ":/web/http_server_debug_win_config.ini";
 #else
-    const QString SETTINGS_FILE = ":/resources/http_server_debug_config.ini";
+	const QString SETTINGS_FILE = ":/web/http_server_debug_config.ini";
 #endif
 
 #else
-	const QString SETTINGS_FILE = ":/resources/http_server_config.ini";
+	const QString SETTINGS_FILE = ":/web/http_server_config.ini";
 #endif
     //const QString SETTINGS_FILE = ":/resources/http_server_config.ini";
 };
