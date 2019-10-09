@@ -1,5 +1,30 @@
 <div class="Profile animated fadeIn" id="content">
-	<form class id="settingsForm" action="./settings" method="POST"> 
+    <div class="card">
+        <div class="card-header">
+                <i class="icon-cloud-upload"></i> База данных
+        </div>
+        <div class="card-body">
+                <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="key">Экспорт в csv файл:</span>
+                            <form action="./car-list/export">
+                                <button type="submit" class="btn btn-info">Скачать csv</button>
+                            </form>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="key">Импорт из csv файла:</span>
+
+                            <form method="post" enctype="multipart/form-data" action="./car-list/import" id="uploadFileForm">
+                                <input type="hidden" name="action" value="upload-file"/>
+                                <input type="file" name="csv-file"/>
+                                <button type="submit" class="btn btn-info">Загрузить</button>
+                            </form>
+                        </li>
+                </ul>
+        </div>
+    </div>
+
+    <form class id="settingsForm" action="./settings" method="POST">
 
 	<div class="card">
 		<div class="card-header">
@@ -8,11 +33,14 @@
 		<div class="card-body">
 			<ul class="list-group">
 				<li class="list-group-item">
-					<span class="key">Логин:</span>
-					<input type="text" name="login" placeholder="Login" class="form-control" value="{login}">
+					<span class="key">Логин админа:</span>
+                    <input type="text" name="adminLogin" placeholder="Login" class="form-control" value="{adminLogin}">
+                    <button type="" class="btn btn-info" id="changePasswordButton1">Изменить пароль</button>
 				</li>
 				<li class="list-group-item">
-					<button type="" class="btn btn-info" id="changePasswordButton">Изменить пароль</button>
+					<span class="key">Логин оператора:</span>
+                    <input type="text" name="operatorLogin" placeholder="Login" class="form-control" value="{operatorLogin}">
+                    <button type="" class="btn btn-info" id="changePasswordButton2">Изменить пароль</button>
 				</li>
 			</ul>
 		</div>
@@ -23,5 +51,15 @@
 	</form>
 </div>
 
-<script>document.getElementById("changePasswordButton").addEventListener("click", showModalChangePasswordDialog);</script>
+<script>
+    document.getElementById("changePasswordButton1").addEventListener("click", function()
+    {
+        showModalChangePasswordDialog("admin");
+    });
+
+    document.getElementById("changePasswordButton2").addEventListener("click", function()
+    {
+        showModalChangePasswordDialog("operator");
+    });
+</script>
 </body>

@@ -1,11 +1,9 @@
 #ifndef CARLISTCONTROLLER_H
 #define CARLISTCONTROLLER_H
 
-#include "httprequest.h"
-#include "httpresponse.h"
-#include "httprequesthandler.h"
+#include "AdminAccesController.h"
 
-class CarListController : public HttpRequestHandler
+class CarListController : public AdminAccesController
 {
 	Q_OBJECT
 	Q_DISABLE_COPY(CarListController)

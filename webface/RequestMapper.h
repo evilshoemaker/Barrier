@@ -19,6 +19,9 @@ public:
     ~RequestMapper();
 
     void service(HttpRequest& request, HttpResponse& response);
+
+private:
+    bool isAdminAccess(HttpRequest &request, HttpResponse &response);
 };
 
 #endif // REQUESTMAPPER_H

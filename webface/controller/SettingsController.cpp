@@ -20,15 +20,23 @@ void SettingsController::service(HttpRequest &request, HttpResponse &response)
 	if (metod == "POST")
 	{
 
-		QString login = request.getParameter("login");
+        QString adminLogin = request.getParameter("adminLogin");
+        QString operatorLogin = request.getParameter("operatorLogin");
 
-		if (login.isEmpty())
+        if (adminLogin.isEmpty())
 		{
-			response.write(Util::makeJsonResult("error", "Не указан номер автомобиля"));
+            response.write(Util::makeJsonResult("error", "Не указан логин администратора"));
 			return;
 		}
 
-		Settings::instance().setLogin(login);
+        if (operatorLogin.isEmpty())
+        {
+            response.write(Util::makeJsonResult("error", "Не указан логин оператора"));
+            return;
+        }
+
+        Settings::instance().setAdminLogin(adminLogin);
+        Settings::instance().setOperatorLogin(operatorLogin);
 
 		Settings::instance().save();
 	}
@@ -39,7 +47,8 @@ void SettingsController::service(HttpRequest &request, HttpResponse &response)
 	Template main = RequestMapper::templateCache->getTemplate("index", language);
 	Template t = RequestMapper::templateCache->getTemplate(QStringLiteral("settings"), language);
 
-	t.setVariable(QStringLiteral("login"), Settings::instance().login());
+    t.setVariable(QStringLiteral("adminLogin"), Settings::instance().adminLogin());
+    t.setVariable(QStringLiteral("operatorLogin"), Settings::instance().operatorLogin());
 
 	main.setVariable("isActiveSettings", " active");
 	main.setVariable("title", "Settings");

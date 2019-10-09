@@ -25,6 +25,7 @@ private:
     void createTables();
     void createLogsTable();
     void createCarsTable();
+    void createUsersTable();
 
     QSqlDatabase database_;
 

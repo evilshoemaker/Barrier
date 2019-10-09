@@ -8,11 +8,17 @@ class Settings
 public:
 	static Settings &instance();
 
-	QString login();
-	void setLogin(const QString &login);
+    QString adminLogin();
+    void setAdminLogin(const QString &login);
 
-	QString password();
-	void setPassword(const QString &password);
+    QString adminPassword();
+    void setAdminPassword(const QString &password);
+
+    QString operatorLogin();
+    void setOperatorLogin(const QString &login);
+
+    QString operatorPassword();
+    void setOperatorPassword(const QString &password);
 
 	void save();
 
@@ -21,8 +27,11 @@ private:
 
 	QSettings *settings_;
 
-	const QString LOGIN = "authorization/login";
-	const QString PASSWORD_HASH = "authorization/password";
+    const QString ADMIN_LOGIN = "authorization/adminLogin";
+    const QString ADMIN_PASSWORD_HASH = "authorization/adminPassword";
+
+    const QString OPERATOR_LOGIN = "authorization/operatorLogin";
+    const QString OPERATOR_PASSWORD_HASH = "authorization/operatorPassword";
 };
 
 #endif // SETTINGS_H

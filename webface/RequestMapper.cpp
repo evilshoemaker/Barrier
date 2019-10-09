@@ -9,6 +9,8 @@
 #include "controller/EditCarController.h"
 #include "controller/RemoveCarController.h"
 #include "controller/ChangePasswordController.h"
+#include "controller/DatabaseExportController.h"
+#include "controller/DatabaseImportController.h"
 
 HttpSessionStore *RequestMapper::sessionStore = nullptr;
 TemplateCache *RequestMapper::templateCache = nullptr;
@@ -37,7 +39,7 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 		return;
 	}
 
-#ifdef QT_NO_DEBUG
+//#ifdef QT_NO_DEBUG
 	QByteArray sessionId = sessionStore->getSessionId(request, response);
 	if (sessionId.isEmpty() && path != "/login")
 	{
@@ -45,22 +47,42 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 		response.redirect("/login");
 		return;
 	}
-#endif
+//#endif
 
 	if (path == "/")
 	{
 		response.redirect("/car-list");
 		return;
 	}
-	else if (path == "/login")
+
+    if (path == "/login")
 	{
 		LoginController().service(request, response);
+        return;
 	}
-	else if (path == "/car-list")
+
+    if (path == "/logout")
+    {
+        HttpSession session = sessionStore->getSession(request, response);
+        sessionStore->removeSession(session);
+
+        response.redirect("/");
+        return;
+    }
+
+    if (path == "/car-list")
 	{
-		CarListController().service(request, response);
+        CarListController().service(request, response);
+        return;
 	}
-	else if (path.startsWith("/logs"))
+
+    if (!isAdminAccess(request, response))
+    {
+        response.redirect("/");
+        return;
+    }
+
+    if (path.startsWith("/logs"))
 	{
 		LogsController().service(request, response);
 	}
@@ -84,15 +106,23 @@ void RequestMapper::service(HttpRequest &request, HttpResponse &response)
 	{
 		EditCarController().service(request, response);
 	}
-	else if (path == "/logout")
-	{
-		HttpSession session = sessionStore->getSession(request, response);
-		sessionStore->removeSession(session);
-
-		response.redirect("/");
-	}
+    else if (path == "/car-list/export")
+    {
+        DatabaseExportController().service(request, response);
+    }
+    else if (path == "/car-list/import")
+    {
+        DatabaseImportController().service(request, response);
+    }
 	else
 	{
 		response.setStatus(404, "Page not found");
 	}
+}
+
+bool RequestMapper::isAdminAccess(HttpRequest &request, HttpResponse &response)
+{
+    HttpSession session = RequestMapper::sessionStore->getSession(request, response, true);
+
+    return session.contains("type") && (session.get("type") == "all");
 }

@@ -5,6 +5,8 @@
 
 #include "webface/RequestMapper.h"
 
+#include "webface/controller/IndexController.h"
+
 CarListController::CarListController()
 {
 
@@ -15,10 +17,24 @@ void CarListController::service(HttpRequest &request, HttpResponse &response)
 	QByteArray language = request.getHeader("Accept-Language");
 	response.setHeader("Content-Type", "text/html; charset=UTF-8");
 
-	Template mainTemplate = RequestMapper::templateCache->getTemplate("index", language);
+    bool isReadOnly = !isAdminAccess(request, response);
+
+    Template mainTemplate = IndexController::getTemplate(request, response);
 	Template t = RequestMapper::templateCache->getTemplate(QStringLiteral("car-list"), language);
 
 	QString transactionId = Database::requestAllCarList();
+
+    QString tableHead = "<tr class=\"table-head\">"
+                        "   <td>№ автомобиля</td>"
+                        "   <td>ФИО владельца</td>"
+                        "   <td>Телефон</td>"
+                        "   <td>№ квартиры</td>"
+                        "   <td>№ парковочного места</td>"
+                        "   <td>Описание</td>"
+                        "   %1"
+                        "</tr>";
+    tableHead = tableHead.arg(isReadOnly ? "" : "<td>Действия</td>");
+
 
     QString tableBody;
 
@@ -46,16 +62,22 @@ void CarListController::service(HttpRequest &request, HttpResponse &response)
             tableBody.append(QString("<td>%1</td>").arg(record.value("apartment_number").toString()));
             tableBody.append(QString("<td>%1</td>").arg(record.value("parking_place").toString()));
             tableBody.append(QString("<td>%1</td>").arg(record.value("description").toString()));
-			tableBody.append(QString("<td class=\"action-btns\" width=\"210\"> "
-							 "  <button type=\"submit\" name=\"car_edit_button\" class=\"mr-1 btn btn-info btn-sm\" form=\"row_form_id_%1\" onclick=\"return editCar();\" value=\"%1\">Редактировать</button>"
-							 "  <button type=\"submit\" name=\"car_remove_button\" class=\"btn btn-warning btn-sm\" form=\"row_form_id_%1\" onclick=\"return tryingToRemoveCar();\" value=\"%1\">Удалить</button>"
-							 "</td>").arg(carId));
+
+            if (!isReadOnly)
+            {
+                tableBody.append(QString("<td class=\"action-btns\" width=\"210\"> "
+                                 "  <button type=\"submit\" name=\"car_edit_button\" class=\"mr-1 btn btn-info btn-sm\" form=\"row_form_id_%1\" onclick=\"return editCar();\" value=\"%1\">Редактировать</button>"
+                                 "  <button type=\"submit\" name=\"car_remove_button\" class=\"btn btn-warning btn-sm\" form=\"row_form_id_%1\" onclick=\"return tryingToRemoveCar();\" value=\"%1\">Удалить</button>"
+                                 "</td>").arg(carId));
+            }
 
             tableBody.append("</tr>");
         }
 	}
 
+    t.setVariable("carListTableHead", tableHead.toUtf8());
     t.setVariable("carListTableBody", tableBody.toUtf8());
+    t.setVariable("isAddButtonVisible", isReadOnly ? "invisible" : "");
 
     mainTemplate.setVariable("isActiveCarList", "active");
     mainTemplate.setVariable("title", "Список автомобилей");

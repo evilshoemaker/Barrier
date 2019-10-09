@@ -4,20 +4,12 @@
             <i class="fa fa-car" aria-hidden="true"></i> Список автомобилей
         </div>
         <div class="card-body">
-                <button class="btn btn-info" id="add_car_button">Добавить</button>
+                <button class="btn btn-info {isAddButtonVisible}" id="add_car_button">Добавить</button>
                 <p/>
                 <div class="table-responsive">
                     <table class="table table-sm table-bordered table-striped table-hover">
                         <thead>
-                            <tr class="table-head">
-                                <td>№ автомобиля</td>
-                                <td>ФИО владельца</td>
-                                <td>Телефон</td>
-                                <td>№ квартиры</td>
-                                <td>№ парковочного места</td>
-                                <td>Описание</td>
-                                <td>Действия</td>
-                            </tr>
+                            {carListTableHead}
                         </thead>
                         <tbody id="carListTableBody"> 
                             {carListTableBody}

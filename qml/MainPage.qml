@@ -113,7 +113,61 @@ Item {
                     text: "Нажмите на клавиатуре от 1-9 для открытия шлагбаума. Отмена Esc"
                 }
 
-                ListView {
+                GridLayout {
+                    id: carNumberListView
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    Layout.topMargin: 10
+
+                    columns: 2
+
+                    rowSpacing: 20
+
+                    Repeater {
+                        model: carNumberModel
+
+                        delegate: RowLayout {
+
+                            //x: (carNumberListView.width / 2) - (width / 2)
+
+                            Rectangle {
+                                Layout.fillHeight: true
+
+                                Layout.preferredWidth: 100
+
+                                border.width: 2
+                                border.color: "#000"
+
+                                radius: 5
+
+                                //scale: 1.5
+
+                                Text {
+                                    anchors.centerIn: parent
+
+                                    horizontalAlignment: Qt.AlignHCenter
+                                    verticalAlignment: Qt.AlignVCenter
+
+                                    font.pixelSize: 48
+                                    font.family: openSansRegular.name
+
+                                    text: (index + 1)
+                                }
+
+                            }
+
+                            CarNumber {
+                                Layout.leftMargin: 20
+                                number: carNumber
+                                //scale: 1.5
+                            }
+                        }
+                    }
+                }
+
+                /*ListView {
                     id: carNumberListView
 
                     model: carNumberModel
@@ -160,7 +214,7 @@ Item {
                     Layout.fillWidth: true
 
                     Layout.topMargin: 10
-                }
+                }*/
             }
         }
 

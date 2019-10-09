@@ -246,11 +246,11 @@ function editCar()
 	return false;
 }
 
-function showModalChangePasswordDialog()
+function showModalChangePasswordDialog(type)
 {
 	event.preventDefault();
 
-	document.getElementById("modal_div").innerHTML = getModalChangePasswordDialogHtml();
+	document.getElementById("modal_div").innerHTML = getModalChangePasswordDialogHtml(type);
 
 	document.getElementById("modal_close_button").addEventListener("click", hideModal);
 	document.getElementById("password_modal_cancel_button").addEventListener("click", hideModal);
@@ -289,7 +289,7 @@ function saveNewPassword()
 	return false;
 }
 
-function getModalChangePasswordDialogHtml()
+function getModalChangePasswordDialogHtml(type)
 {
 	return '<div tabindex="-1" style="position: relative; z-index: 1050;">'
 			+ '<div class="w2">'
@@ -302,7 +302,8 @@ function getModalChangePasswordDialogHtml()
 								+ '</button>'
 							+ '</div>'
 							+ '<div class="modal-body">'
-								+ '<form class id="password_edit_form" method="POST" action="/settings/change-password">'
+                                + '<form class id="password_edit_form" method="POST" action="/settings/change-password">'
+                                    + '<input type="hidden" name="type" value="' + type + '" form="password_edit_form"/>'
 									+ '<div class="row">'
 										+ '<div class="col-12">'
 											+ '<div class="form-group">'

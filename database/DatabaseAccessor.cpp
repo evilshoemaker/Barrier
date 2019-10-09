@@ -144,3 +144,35 @@ void DatabaseAccessor::createCarsTable()
         }
     }
 }
+
+void DatabaseAccessor::createUsersTable()
+{
+    if (database_.tables().contains("users"))
+    {
+        return;
+    }
+
+    QStringList queryList;
+    queryList.append("CREATE TABLE cars ("
+                     " id INTEGER NOT NULL PRIMARY KEY,"
+                     " car_number TEXT NOT NULL,"
+                     " name TEXT NOT NULL,"
+                     " surname TEXT NOT NULL,"
+                     " patronymic TEXT NOT NULL,"
+                     " apartment_number DEFAULT NULL,"
+                     " parking_place DEFAULT NULL,"
+                     " phone_number DEFAULT NULL,"
+                     " description TEXT DEFAULT '',"
+                     " CONSTRAINT unique_car_number UNIQUE (car_number));");
+
+    QSqlQuery q(database_);
+
+    for (int i = 0; i < queryList.count(); ++i)
+    {
+        if (!q.exec(queryList.at(i).toLocal8Bit().constData()))
+        {
+            qWarning() << "Failed to create table:" << q.lastError().text();
+            continue;
+        }
+    }
+}

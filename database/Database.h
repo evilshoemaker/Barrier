@@ -24,6 +24,8 @@ public:
 
 	static QString requestCar(qlonglong id);
 
+    static QString requestCarByNumber(const QString &number);
+
     static QString addCar(const CarNumberInfo &car);
 
 	static QString updateCar(const CarNumberInfo &car);

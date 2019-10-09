@@ -28,7 +28,13 @@ QString Database::requestAllCarList(const QString &transactionId)
 QString Database::requestCar(qlonglong id)
 {
 	QString sql = QString("SELECT * FROM cars WHERE id = %1");
-	return Database::instance()->databaseThread_->executeQuery(sql.arg(id));
+    return Database::instance()->databaseThread_->executeQuery(sql.arg(id));
+}
+
+QString Database::requestCarByNumber(const QString &number)
+{
+    QString sql = QString("SELECT * FROM cars WHERE car_number = '%1'");
+    return Database::instance()->databaseThread_->executeQuery(sql.arg(number));
 }
 
 QString Database::addCar(const CarNumberInfo &car)

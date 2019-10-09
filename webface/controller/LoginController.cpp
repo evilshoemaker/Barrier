@@ -28,14 +28,26 @@ void LoginController::service(HttpRequest &request, HttpResponse &response)
         }
         else
         {
-			if (Util::sha1(password) == Settings::instance().password() && username == Settings::instance().login())
+            if (Util::sha1(password) == Settings::instance().adminPassword() &&
+                    username == Settings::instance().adminLogin())
             {
                 session.set("username", username);
                 session.set("logintime", QTime::currentTime());
+                session.set("type", "all");
 
                 response.redirect("/");
                 return;
             }
+            else if (Util::sha1(password) == Settings::instance().operatorPassword() &&
+                     username == Settings::instance().operatorLogin())
+             {
+                 session.set("username", username);
+                 session.set("logintime", QTime::currentTime());
+                 session.set("type", "readOnly");
+
+                 response.redirect("/");
+                 return;
+             }
             else
             {
                 QByteArray language = request.getHeader("Accept-Language");
