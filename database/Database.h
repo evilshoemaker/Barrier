@@ -32,6 +32,8 @@ public:
 
 	static QString removeCar(qlonglong id);
 
+    static QString removeAllCars();
+
 	static QString requestAllLogs();
 
 	static QString requestLogForDate(const QDateTime &beginDate, const QDateTime &endDate);

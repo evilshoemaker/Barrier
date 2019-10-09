@@ -100,7 +100,14 @@ QString Database::removeCar(qlonglong id)
 {
 	const QString sql = QString("DELETE FROM cars WHERE id=%1");
 	return Database::instance()->
-			databaseThread_->executeQuery(sql.arg(id));
+            databaseThread_->executeQuery(sql.arg(id));
+}
+
+QString Database::removeAllCars()
+{
+    const QString sql = QString("DELETE FROM cars");
+    return Database::instance()->
+            databaseThread_->executeQuery(sql);
 }
 
 QString Database::requestAllLogs()

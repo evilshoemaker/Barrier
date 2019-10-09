@@ -29,9 +29,14 @@ void DatabaseImportController::service(HttpRequest &request, HttpResponse &respo
 
             QStringList list = content.split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
 
-            for (QString line : list)
+            QString transactionId = Database::removeAllCars();
+            SyncQueryHandler queryHandler;
+            if (queryHandler.waitResult(transactionId))
             {
-                insertOrUpdate(line);
+                for (QString line : list)
+                {
+                    insertOrUpdate(line);
+                }
             }
         }
 
@@ -45,35 +50,18 @@ void DatabaseImportController::insertOrUpdate(const QString &row)
     QStringList items = row.split(";");
     if (items.size() >= 8)
     {
-        QString transactionId = Database::requestCarByNumber(items.at(0).trimmed());
-        SyncQueryHandler queryHandler;
-        if (queryHandler.waitResult(transactionId))
-        {
-            CarNumberInfo car;
-            car.setCarNumber(items.at(0).trimmed());
-            car.setOwnerSurname(items.at(1).trimmed());
-            car.setOwnerName(items.at(2).trimmed());
-            car.setOwnerPatronymic(items.at(3).trimmed());
-            car.setPhoneNumber(items.at(4).trimmed());
-            car.setApartmentNumber(items.at(5).trimmed());
-            car.setParkingPlace(items.at(6).trimmed());
-            car.setDescription(items.at(7).trimmed());
+        CarNumberInfo car;
+        car.setCarNumber(items.at(0).trimmed());
+        car.setOwnerSurname(items.at(1).trimmed());
+        car.setOwnerName(items.at(2).trimmed());
+        car.setOwnerPatronymic(items.at(3).trimmed());
+        car.setPhoneNumber(items.at(4).trimmed());
+        car.setApartmentNumber(items.at(5).trimmed());
+        car.setParkingPlace(items.at(6).trimmed());
+        car.setDescription(items.at(7).trimmed());
 
-            QList<QSqlRecord> records = queryHandler.records();
-            if (records.isEmpty())
-            {
-                transactionId = Database::addCar(car);
-                queryHandler.waitResult(transactionId);
-            }
-            else
-            {
-                QSqlRecord record = records.first();
+        QString transactionId = Database::addCar(car);
 
-                car.setId(record.value("id").toLongLong());
-
-                transactionId = Database::updateCar(car);
-                queryHandler.waitResult(transactionId);
-            }
-        }
+        SyncQueryHandler().waitResult(transactionId);
     }
 }
