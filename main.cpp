@@ -12,6 +12,7 @@
 #include "core/CarNumberParser.h"
 #include "webface/WebFace.h"
 
+#include "database/CarNumberPageModel.h"
 #include "database/CarNumberInfoModel.h"
 #include "database/CarNumberInfo.h"
 #include "database/Database.h"
@@ -137,6 +138,7 @@ void registerMetaType()
 
 void qmlRegisterTypes()
 {
+    qmlRegisterType<CarNumberPageModel>("app", 1, 0, "CarNumberPageModel");
     qmlRegisterType<CarNumberInfoModel>("app", 1, 0, "CarNumberInfoModel");
 	qmlRegisterType<CarNumberInfo>("app", 1, 0, "CarNumberInfo");
     qmlRegisterType<CarNumberParser>("app", 1, 0, "CarNumberParser");
@@ -164,13 +166,13 @@ int main(int argc, char *argv[])
 	WebFace webFace;
 	webFace.init();
 
-	QQmlApplicationEngine engine;
+    QQmlApplicationEngine engine;
 
 	engine.rootContext()->setContextProperty("databaseLogger", QVariant::fromValue(DatabaseLogger::instance()));
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
-		return -1;
+        return -1;
 
     return app.exec();
 }

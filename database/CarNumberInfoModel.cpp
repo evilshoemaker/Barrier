@@ -74,7 +74,7 @@ CarNumberInfo *CarNumberInfoModel::at(int index)
 	return data_.at(index);
 }
 
-void CarNumberInfoModel::search(const QString &number)
+/*void CarNumberInfoModel::search(const QString &number)
 {
     clear();
 
@@ -93,7 +93,7 @@ void CarNumberInfoModel::search(const QString &number)
 					 createIndex(data_.size() - 1, 0, static_cast<void *>(0)));
     emit countChanged();
     emit searchCompleted(true);
-}
+}*/
 
 void CarNumberInfoModel::clear()
 {
@@ -106,5 +106,34 @@ void CarNumberInfoModel::clear()
 
 	QModelIndex index = createIndex(0, 0, static_cast<void *>(0));
 	emit dataChanged(index, index);
+    emit countChanged();
+}
+
+void CarNumberInfoModel::append(CarNumberInfo *info)
+{
+    if (info == nullptr)
+        return;
+
+    beginInsertRows(QModelIndex(), 0, 1);
+    data_.append(info);
+    endInsertRows();
+
+    emit dataChanged(createIndex(0, 0, static_cast<void *>(nullptr)),
+                     createIndex(data_.size() - 1, 0, static_cast<void *>(nullptr)));
+    emit countChanged();
+}
+
+void CarNumberInfoModel::append(const QList<CarNumberInfo *> &list)
+{
+    if (list.isEmpty()) {
+        return;
+    }
+
+    beginInsertRows(QModelIndex(), data_.size(), list.size() - 1);
+    data_.append(list);
+    endInsertRows();
+
+    emit dataChanged(createIndex(0, 0, static_cast<void *>(nullptr)),
+                     createIndex(data_.size() - 1, 0, static_cast<void *>(nullptr)));
     emit countChanged();
 }

@@ -130,8 +130,7 @@ void DatabaseAccessor::createCarsTable()
                      " apartment_number DEFAULT NULL,"
                      " parking_place DEFAULT NULL,"
                      " phone_number DEFAULT NULL,"
-                     " description TEXT DEFAULT '',"
-                     " CONSTRAINT unique_car_number UNIQUE (car_number));");
+                     " description TEXT DEFAULT '');");
 
     QSqlQuery q(database_);
 

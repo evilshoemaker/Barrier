@@ -35,13 +35,16 @@ public:
 
 	Q_INVOKABLE CarNumberInfo *at(int index);
 
-    Q_INVOKABLE void search(const QString &number);
+    //Q_INVOKABLE void search(const QString &number);
 
     void clear();
 
+    void append(CarNumberInfo *info);
+    void append(const QList<CarNumberInfo *> &data);
+
 signals:
     void countChanged();
-    void searchCompleted(bool isSearch);
+    //void searchCompleted(bool isSearch);
 
 private:
 	QList<CarNumberInfo *> data_;

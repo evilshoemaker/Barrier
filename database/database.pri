@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/CarNumberPageModel.h \
     $$PWD/DatabaseAccessor.h \
     $$PWD/DatabaseThread.h \
     $$PWD/Database.h \
@@ -9,6 +10,7 @@ HEADERS += \
     $$PWD/DatabaseLogger.h
 
 SOURCES += \
+    $$PWD/CarNumberPageModel.cpp \
     $$PWD/DatabaseAccessor.cpp \
     $$PWD/DatabaseThread.cpp \
     $$PWD/Database.cpp \

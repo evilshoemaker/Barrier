@@ -10,6 +10,8 @@ Item {
     signal nextDigit(string digit)
     signal deleteDigit()
     signal escaped()
+    signal plusPressed()
+    signal minusPressed()
 
 
     Keys.onPressed: {
@@ -38,6 +40,14 @@ Item {
 
         if (event.key === Qt.Key_Escape) {
             escaped();
+        }
+
+        if (event.key === Qt.Key_Minus) {
+            minusPressed();
+        }
+
+        if (event.key === Qt.Key_Plus) {
+            plusPressed();
         }
     }
 }

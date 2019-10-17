@@ -41,11 +41,11 @@ void AddCarController::parseAndSave(HttpRequest &request, HttpResponse &response
     QString phone = request.getParameter("phone");
     QString description = request.getParameter("description");
 
-    if (carNumber.isEmpty())
+    /*if (carNumber.isEmpty())
     {
         writeResult(response, "error", "Не указан номер автомобиля");
         return;
-    }
+    }*/
 
     if (ownerSurname.isEmpty())
     {

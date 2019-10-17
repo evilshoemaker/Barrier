@@ -84,7 +84,7 @@ Item {
 
             visible: false
 
-            Layout.topMargin: 24
+            Layout.topMargin: 14
             Layout.leftMargin: 45
             Layout.rightMargin: 45
 
@@ -97,7 +97,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
 
-                    Layout.topMargin: 24
+                    Layout.topMargin: 14
                     Layout.leftMargin: 45
                     Layout.rightMargin: 45
 
@@ -110,111 +110,114 @@ Item {
 
                     wrapMode: Text.WordWrap
 
-                    text: "Нажмите на клавиатуре от 1-9 для открытия шлагбаума. Отмена Esc"
+                    text: "Нажмите на клавиатуре от 0-9 для открытия шлагбаума. Для перемещения по страницам клавиши + -. Отмена Esc"
                 }
 
-                GridLayout {
-                    id: carNumberListView
-
+                Item{
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-
                     Layout.topMargin: 10
 
-                    columns: 2
+                    PageIndicator {
+                        id: pageIndicator
+                        interactive: true
+                        count: carNumberPageModel.count
+                        currentIndex: 0
 
-                    rowSpacing: 20
+                        anchors.bottom: parent.bottom
+                        anchors.horizontalCenter: parent.horizontalCenter
 
-                    Repeater {
-                        model: carNumberModel
+                        anchors.bottomMargin: -25
 
-                        delegate: RowLayout {
+                        delegate: Rectangle {
+                                implicitWidth: 48
+                                implicitHeight: 48
 
-                            //x: (carNumberListView.width / 2) - (width / 2)
+                                radius: width / 2
+                                color: "#000"
 
-                            Rectangle {
-                                Layout.fillHeight: true
+                                opacity: index === pageIndicator.currentIndex ? 0.95 : pressed ? 0.7 : 0.45
+                            }
+                    }
 
-                                Layout.preferredWidth: 100
+                    SwipeView {
+                        id: swipeView
+                        currentIndex: pageIndicator.currentIndex
+                        anchors.fill: parent
+                        interactive: false
 
-                                border.width: 2
-                                border.color: "#000"
+                        Repeater {
+                            model: carNumberPageModel
 
-                                radius: 5
+                            delegate: Item {
+                                GridLayout {
+                                    id: carNumberListView
 
-                                //scale: 1.5
+                                    scale: 1.3
 
-                                Text {
                                     anchors.centerIn: parent
 
-                                    horizontalAlignment: Qt.AlignHCenter
-                                    verticalAlignment: Qt.AlignVCenter
+                                    //Layout.fillHeight: true
+                                    //Layout.fillWidth: true
+                                    //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                                    font.pixelSize: 48
-                                    font.family: openSansRegular.name
+                                    //Layout.topMargin: 10
 
-                                    text: (index + 1)
+                                    columns: 2
+                                    columnSpacing: 50
+
+                                    rowSpacing: 20
+
+                                    Repeater {
+                                        model: carNumberModel
+
+                                        delegate: RowLayout {
+
+                                            property int columnIndex: Math.floor(index / 5)
+
+                                            Layout.column: Math.floor(index / 5)
+                                            Layout.row: (index % 5) + 1
+
+                                            Rectangle {
+                                                //Layout.fillHeight: true
+
+                                                Layout.preferredWidth: 90
+                                                Layout.preferredHeight: 90
+
+                                                border.width: 2
+                                                border.color: "#000"
+
+                                                radius: 5
+
+                                                //scale: 1.5
+
+                                                Text {
+                                                    anchors.centerIn: parent
+
+                                                    horizontalAlignment: Qt.AlignHCenter
+                                                    verticalAlignment: Qt.AlignVCenter
+
+                                                    font.pixelSize: 48
+                                                    font.family: openSansRegular.name
+
+                                                    text: index
+                                                }
+
+                                            }
+
+                                            CarNumber {
+                                                Layout.leftMargin: 20
+                                                number: carNumber
+                                                //scale: 1.5
+                                            }
+                                        }
+                                    }
                                 }
-
-                            }
-
-                            CarNumber {
-                                Layout.leftMargin: 20
-                                number: carNumber
-                                //scale: 1.5
                             }
                         }
                     }
+
                 }
-
-                /*ListView {
-                    id: carNumberListView
-
-                    model: carNumberModel
-                    spacing: 20
-
-                    delegate: RowLayout {
-
-                        x: (carNumberListView.width / 2) - (width / 2)
-
-                        Rectangle {
-                            Layout.fillHeight: true
-
-                            Layout.preferredWidth: 100
-
-                            border.width: 2
-                            border.color: "#000"
-
-                            radius: 5
-
-                            //scale: 1.5
-
-                            Text {
-                                anchors.centerIn: parent
-
-                                horizontalAlignment: Qt.AlignHCenter
-                                verticalAlignment: Qt.AlignVCenter
-
-                                font.pixelSize: 48
-                                font.family: openSansRegular.name
-
-                                text: (index + 1)
-                            }
-
-                        }
-
-                        CarNumber {
-                            Layout.leftMargin: 20
-                            number: carNumber
-                            //scale: 1.5
-                        }
-                    }
-
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-
-                    Layout.topMargin: 10
-                }*/
             }
         }
 
@@ -248,6 +251,18 @@ Item {
     KeyEventHandler {
         //enabled: page.state == 'inputState'
 
+        onMinusPressed: {
+            if (pageIndicator.currentIndex > 0) {
+                pageIndicator.currentIndex--;
+            }
+        }
+
+        onPlusPressed: {
+            if (pageIndicator.currentIndex < pageIndicator.count - 1) {
+                pageIndicator.currentIndex++;
+            }
+        }
+
         onNextDigit: {
             if (page.state == 'inputState') {
                 carNumber.number += digit
@@ -259,13 +274,15 @@ Item {
             }
             else if (page.state == 'foundState')
             {
-                var index = parseInt(digit, 10) - 1;
+                var index = parseInt(digit, 10);
 
-                if (carNumberModel.count > index && index > -1)
+                var carModel = carNumberPageModel.at(pageIndicator.currentIndex);
+
+                if (carModel && carModel.count > index && index > -1)
                 {
                     page.state = "openningBarrier";
 
-                    var carNumberInfo  = carNumberModel.at(index);
+                    var carNumberInfo  = carModel.at(index);
                     carNumber.fullNumber = carNumberInfo.carNumber;
                     databaseLogger.openBarrier(carNumberInfo)
                     console.log("open " + index + " " + carNumberInfo.carNumber);
@@ -293,15 +310,16 @@ Item {
     function search()
     {
         page.state = "searchState"
-        carNumberModel.search(carNumber.number)
+        carNumberPageModel.search(carNumber.number)
     }
 
-    CarNumberInfoModel {
-        id: carNumberModel
+    CarNumberPageModel {
+        id: carNumberPageModel
 
         onSearchCompleted: {
             if (isSearch) {
                 page.state = "foundState"
+                pageIndicator.currentIndex = 0;
             }
             else {
                 page.state = "notFoundState"
