@@ -50,7 +50,7 @@ void CarNumberPageModel::search(const QString &number)
         return;
     }
 
-    int count = list.size() / 10;
+    int count = list.size() / 9;
 
     QList<CarNumberInfoModel *> tmpList;
 
@@ -58,7 +58,7 @@ void CarNumberPageModel::search(const QString &number)
     {
         CarNumberInfoModel *model = new CarNumberInfoModel(this);
         tmpList.append(model);
-        model->append(list.mid(i * 10, 10));
+        model->append(list.mid(i * 9, 9));
 
     }
 
@@ -104,7 +104,14 @@ void CarNumberPageModel::clear()
     if (data_.isEmpty())
         return;
 
-    beginRemoveRows(QModelIndex(), 0, data_.size());
+    beginRemoveRows(QModelIndex(), 0, data_.size() - 1);
+    //qDeleteAll(data_);
+    for (CarNumberInfoModel *model : data_)
+    {
+        model->deleteLater();
+        delete model;
+    }
+
     data_.clear();
     endRemoveRows();
 

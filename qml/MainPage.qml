@@ -23,7 +23,7 @@ Item {
             NumberControl {
                 id: carNumber
 
-                //scale: 1.5
+                scale: 0.7
 
                 Layout.preferredWidth: 600
                 Layout.preferredHeight: 120
@@ -43,7 +43,7 @@ Item {
 
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pixelSize: 48
+                font.pixelSize: 42
                 font.family: openSansRegular.name
                 font.capitalization: Font.AllUppercase
 
@@ -63,7 +63,7 @@ Item {
 
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pixelSize: 48
+                font.pixelSize: 42
                 font.family: openSansRegular.name
                 font.capitalization: Font.AllUppercase
 
@@ -84,7 +84,7 @@ Item {
 
             visible: false
 
-            Layout.topMargin: 14
+            Layout.topMargin: -15
             Layout.leftMargin: 45
             Layout.rightMargin: 45
 
@@ -104,7 +104,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
 
-                    font.pixelSize: 36
+                    font.pixelSize: 32
                     font.family: openSansRegular.name
                     //font.capitalization: Font.AllUppercase
 
@@ -116,7 +116,7 @@ Item {
                 Item{
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Layout.topMargin: 10
+                    Layout.topMargin: 0
 
                     PageIndicator {
                         id: pageIndicator
@@ -130,8 +130,8 @@ Item {
                         anchors.bottomMargin: -25
 
                         delegate: Rectangle {
-                                implicitWidth: 48
-                                implicitHeight: 48
+                                implicitWidth: 38
+                                implicitHeight: 38
 
                                 radius: width / 2
                                 color: "#000"
@@ -153,7 +153,7 @@ Item {
                                 GridLayout {
                                     id: carNumberListView
 
-                                    scale: 1.3
+                                    scale: 0.8//1.3
 
                                     anchors.centerIn: parent
 
@@ -200,7 +200,7 @@ Item {
                                                     font.pixelSize: 48
                                                     font.family: openSansRegular.name
 
-                                                    text: index
+                                                    text: (index + 1)
                                                 }
 
                                             }
@@ -274,7 +274,7 @@ Item {
             }
             else if (page.state == 'foundState')
             {
-                var index = parseInt(digit, 10);
+                var index = parseInt(digit, 10) - 1;
 
                 var carModel = carNumberPageModel.at(pageIndicator.currentIndex);
 
